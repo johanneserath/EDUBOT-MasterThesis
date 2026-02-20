@@ -25,30 +25,15 @@ body {
 }
 
 #app-container {
+    width: 100vw;
+    height: 100vh;
     background: white;
     display: flex;
+    flex-direction: row;
     overflow: hidden;
 }
 
-/* LAYOUT: Centered (index.html, InterfaceA.html) */
-#app-container.layout-centered {
-    width: 100%;
-    max-width: 700px;
-    height: 70vh;
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    flex-direction: column;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* LAYOUT: Split Pane (interfaceB.html) */
-#app-container.layout-split {
-    width: 100vw;
-    height: 100vh;
-    flex-direction: row;
-}
-
-/* LEFT PANEL: Wrapper (Specific to Split Layout) */
+/* LEFT PANEL: Wrapper */
 #left-pane-wrapper {
     flex: 1;
     display: flex;
@@ -60,7 +45,7 @@ body {
     border-right: 1px solid var(--border-color);
 }
 
-/* LEFT PANEL: Chat Window (Specific to Split Layout) */
+/* LEFT PANEL: Chat Window */
 #chat-panel {
     width: 70%;
     height: 70%;
@@ -73,7 +58,7 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* RIGHT PANEL: PDF (Specific to Split Layout) */
+/* RIGHT PANEL: PDF */
 #pdf-panel {
     flex: 1;
     height: 100%;
@@ -265,72 +250,4 @@ button:hover {
     margin-top: 20%;
     color: var(--text-muted);
     opacity: 0.5;
-}
-
-/* WELCOME PAGE SPECIFIC STYLES */
-.welcome-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.welcome-content h2 {
-    font-size: 1.1rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
-}
-
-.study-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--text-main);
-}
-
-.pdf-preview-container {
-    width: 100%;
-    height: 300px;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    background: #f3f4f6;
-}
-
-.pdf-preview-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.confirmation-section {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    background: #f9fafb;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
-}
-
-.confirmation-section input[type="checkbox"] {
-    width: 1.2rem;
-    height: 1.2rem;
-    cursor: pointer;
-}
-
-.confirmation-section label {
-    font-size: 0.9rem;
-    color: var(--text-main);
-    cursor: pointer;
-    user-select: none;
-}
-
-.begin-button {
-    width: 100%;
-    justify-content: center;
-}
-
-.begin-button:disabled {
-    background-color: var(--text-muted);
-    opacity: 0.5;
-    cursor: not-allowed;
 }
