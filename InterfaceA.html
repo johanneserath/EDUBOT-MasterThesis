@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDU BOT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="app-container">
+        <header>
+            <div>
+                <h1>EDU BOT</h1>
+                <div id="session-display">Session: loading...</div>
+            </div>
+        </header>
+
+        <main id="chat-window">
+            <div class="empty-state" id="empty-state">
+                <p>Type a question to begin.</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="input-group">
+                <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off">
+                <button id="send-button">Ask</button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        /**
+         * CONFIGURABLE CONSTANTS
+         */
+        const STATIC_ANSWER_TEXT = "This text will be shown to everyone that asks any question in the chat window";
+        const PDF_URL = "C:/temp/MT0_ErathJohannes_2_Pager.pdf#page=3&zoom=100";
+
+        let sessionId = "";
+        const chatWindow = document.getElementById('chat-window');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-button');
+        const emptyState = document.getElementById('empty-state');
+        const sessionDisplay = document.getElementById('session-display');
+
+        function trackEvent(eventType, metadata = {}) {
+            const event = {
+                eventType,
+                sessionId,
+                timestamp: new Date().toISOString(),
+                ...metadata,
+            };
+            console.log("Tracked event:", event);
+        }
+
+        function init() {
+            let sid = sessionStorage.getItem('app_session_id');
+            if (!sid) {
+                sid = 'local-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+                sessionStorage.setItem('app_session_id', sid);
+            }
+            sessionId = sid;
+            sessionDisplay.innerText = `Session: ${sessionId}`;
+        }
+
+        /**
+         * SHOW THINKING INDICATOR
+         * Creates a temporary bubble with dots to simulate AI processing.
+         */
+        function showThinkingIndicator() {
+            const thinkingDiv = document.createElement('div');
+            thinkingDiv.className = 'thinking-bubble';
+            thinkingDiv.id = 'thinking-indicator';
+            thinkingDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            chatWindow.appendChild(thinkingDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            return thinkingDiv;
+        }
+
+        function appendMessage(type, text) {
+            if (emptyState) emptyState.style.display = 'none';
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${type === 'user' ? 'user-message' : 'ai-message'}`;
+
+            if (type === 'ai') {
+                msgDiv.innerHTML = `${text} <a href="${PDF_URL}" class="citation-link" target="_blank" rel="noopener noreferrer">[1]</a>`;
+                const citation = msgDiv.querySelector('.citation-link');
+                citation.addEventListener('click', () => {
+                    trackEvent('citation_click', { pdfUrl: PDF_URL });
+                });
+            } else {
+                msgDiv.textContent = text;
+            }
+
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        /**
+         * UPDATED ACTION HANDLER
+         * Now includes the thinking animation flow with a 4.5s delay.
+         */
+        function handleSend() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // 1. Post User Message
+            appendMessage('user', text);
+            userInput.value = '';
+
+            // 2. Show the "Thinking" animation
+            const indicator = showThinkingIndicator();
+
+            // 3. Wait 4.5 seconds to make it feel more "real"
+            setTimeout(() => {
+                // Remove the animation bubble
+                if (indicator) indicator.remove();
+
+                // Post the final answer
+                appendMessage('ai', STATIC_ANSWER_TEXT);
+            }, 4500);
+        }
+
+        sendBtn.addEventListener('click', () => {
+            trackEvent('ask_button_click');
+            handleSend();
+        });
+
+        userInput.addEventListener('click', () => {
+            trackEvent('input_click');
+        });
+
+        userInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                trackEvent('enter_pressed');
+                handleSend();
+            }
+        });
+
+        init();
+    </script>
+</body>
+
+</html>

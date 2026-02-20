@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDU BOT</title>
+    <title>EDU BOT - Welcome</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -14,134 +14,56 @@
         <header>
             <div>
                 <h1>EDU BOT</h1>
-                <div id="session-display">Session: loading...</div>
+                <div id="session-display">Research Study Introduction</div>
             </div>
         </header>
 
-        <main id="chat-window">
-            <div class="empty-state" id="empty-state">
-                <p>Type a question to begin.</p>
+        <main>
+            <div class="welcome-content">
+                <h2>Welcome to the Study</h2>
+                <div class="study-description">
+                    <p>Thank you for participating in this research. This study evaluates the effectiveness of AI-driven
+                        educational assistants. Please review the following information about the study design and your
+                        participation.</p>
+                    <br>
+                    <p>The study involves interacting with a chatbot to solve specific educational tasks. Your
+                        interactions will be logged anonymously for research purposes.</p>
+                </div>
+
+                <h2>Reference Document</h2>
+                <div class="pdf-preview-container">
+                    <iframe src="C:/temp/MT0_ErathJohannes_2_Pager.pdf" type="application/pdf">
+                        <p>It seems your browser does not support embedded PDFs. You can <a
+                                href="C:/temp/MT0_ErathJohannes_2_Pager.pdf">download the PDF here</a>.</p>
+                    </iframe>
+                </div>
+
+                <div class="confirmation-section">
+                    <input type="checkbox" id="read-understood">
+                    <label for="read-understood">I have read and understood the study information and the document
+                        provided.</label>
+                </div>
             </div>
         </main>
 
         <footer>
-            <div class="input-group">
-                <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off">
-                <button id="send-button">Ask</button>
-            </div>
+            <button id="begin-button" class="begin-button" disabled>Begin!</button>
         </footer>
     </div>
 
     <script>
-        /**
-         * CONFIGURABLE CONSTANTS
-         */
-        const STATIC_ANSWER_TEXT = "This text will be shown to everyone that asks any question in the chat window";
-        const PDF_URL = "C:/temp/MT0_ErathJohannes_2_Pager.pdf#page=3&zoom=100";
+        const checkbox = document.getElementById('read-understood');
+        const beginBtn = document.getElementById('begin-button');
 
-        let sessionId = "";
-        const chatWindow = document.getElementById('chat-window');
-        const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-button');
-        const emptyState = document.getElementById('empty-state');
-        const sessionDisplay = document.getElementById('session-display');
-
-        function trackEvent(eventType, metadata = {}) {
-            const event = {
-                eventType,
-                sessionId,
-                timestamp: new Date().toISOString(),
-                ...metadata,
-            };
-            console.log("Tracked event:", event);
-        }
-
-        function init() {
-            let sid = sessionStorage.getItem('app_session_id');
-            if (!sid) {
-                sid = 'local-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
-                sessionStorage.setItem('app_session_id', sid);
-            }
-            sessionId = sid;
-            sessionDisplay.innerText = `Session: ${sessionId}`;
-        }
-
-        /**
-         * SHOW THINKING INDICATOR
-         * Creates a temporary bubble with dots to simulate AI processing.
-         */
-        function showThinkingIndicator() {
-            const thinkingDiv = document.createElement('div');
-            thinkingDiv.className = 'thinking-bubble';
-            thinkingDiv.id = 'thinking-indicator';
-            thinkingDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-            chatWindow.appendChild(thinkingDiv);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-            return thinkingDiv;
-        }
-
-        function appendMessage(type, text) {
-            if (emptyState) emptyState.style.display = 'none';
-
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${type === 'user' ? 'user-message' : 'ai-message'}`;
-
-            if (type === 'ai') {
-                msgDiv.innerHTML = `${text} <a href="${PDF_URL}" class="citation-link" target="_blank" rel="noopener noreferrer">[1]</a>`;
-                const citation = msgDiv.querySelector('.citation-link');
-                citation.addEventListener('click', () => {
-                    trackEvent('citation_click', { pdfUrl: PDF_URL });
-                });
-            } else {
-                msgDiv.textContent = text;
-            }
-
-            chatWindow.appendChild(msgDiv);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-        }
-
-        /**
-         * UPDATED ACTION HANDLER
-         * Now includes the thinking animation flow with a 4.5s delay.
-         */
-        function handleSend() {
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            // 1. Post User Message
-            appendMessage('user', text);
-            userInput.value = '';
-
-            // 2. Show the "Thinking" animation
-            const indicator = showThinkingIndicator();
-
-            // 3. Wait 4.5 seconds to make it feel more "real"
-            setTimeout(() => {
-                // Remove the animation bubble
-                if (indicator) indicator.remove();
-
-                // Post the final answer
-                appendMessage('ai', STATIC_ANSWER_TEXT);
-            }, 4500);
-        }
-
-        sendBtn.addEventListener('click', () => {
-            trackEvent('ask_button_click');
-            handleSend();
+        checkbox.addEventListener('change', () => {
+            beginBtn.disabled = !checkbox.checked;
         });
 
-        userInput.addEventListener('click', () => {
-            trackEvent('input_click');
-        });
-
-        userInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                trackEvent('enter_pressed');
-                handleSend();
+        beginBtn.addEventListener('click', () => {
+            if (!beginBtn.disabled) {
+                window.location.href = 'InterfaceA.html';
             }
         });
-
-        init();
     </script>
 </body>
 
