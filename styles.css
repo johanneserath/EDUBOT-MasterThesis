@@ -25,16 +25,67 @@ body {
 }
 
 #app-container {
+    background: white;
+    display: flex;
+    overflow: hidden;
+}
+
+/* LAYOUT: Centered (index.html, InterfaceA.html) */
+#app-container.layout-centered {
     width: 100%;
     max-width: 700px;
     height: 70vh;
-    background: white;
     border: 1px solid var(--border-color);
     border-radius: 1rem;
-    display: flex;
     flex-direction: column;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* LAYOUT: Split Pane (interfaceB.html) */
+#app-container.layout-split {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: row;
+}
+
+/* LEFT PANEL: Wrapper (Specific to Split Layout) */
+#left-pane-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    min-width: 320px;
+    background-color: var(--bg-gray);
+    border-right: 1px solid var(--border-color);
+}
+
+/* LEFT PANEL: Chat Window (Specific to Split Layout) */
+#chat-panel {
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+/* RIGHT PANEL: PDF (Specific to Split Layout) */
+#pdf-panel {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    background: #525659;
+    /* Standard PDF viewer background color */
+}
+
+#pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 header {
