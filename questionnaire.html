@@ -204,12 +204,12 @@
                     <div class="form-group full-width">
                         <label>Gender</label>
                         <div class="radio-grid">
-                            <label class="radio-option"><input type="radio" name="gender" value="male" required>
+                            <label class="radio-option"><input type="radio" name="gender" value="1" required>
                                 Male</label>
-                            <label class="radio-option"><input type="radio" name="gender" value="female"> Female</label>
-                            <label class="radio-option"><input type="radio" name="gender" value="diverse">
+                            <label class="radio-option"><input type="radio" name="gender" value="2"> Female</label>
+                            <label class="radio-option"><input type="radio" name="gender" value="3">
                                 Diverse</label>
-                            <label class="radio-option"><input type="radio" name="gender" value="no-answer"> Prefer not
+                            <label class="radio-option"><input type="radio" name="gender" value="4"> Prefer not
                                 to say</label>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
                 const dbData = {
                     user_id: sessionUserId,
                     age: parseInt(rawData.age),
-                    gender: rawData.gender,
+                    gender: parseInt(rawData.gender),
                     ai_frequency: parseInt(rawData.ai_frequency),
                     comment: rawData.comment || ""
                 };
