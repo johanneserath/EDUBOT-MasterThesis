@@ -550,6 +550,23 @@ button:disabled {
     background-color: #f5f3ff;
 }
 
+.opt-out-button {
+    background-color: transparent;
+    color: #ef4444; /* Red color for warning/stop */
+    border: 1px solid #fee2e2;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-radius: 6px;
+}
+
+.opt-out-button:hover {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
 .navigation-group {
     display: flex;
     justify-content: center;

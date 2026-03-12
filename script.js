@@ -581,5 +581,29 @@ if (nextTaskBtn) {
     });
 }
 
+/**
+ * OPT-OUT HANDLER
+ */
+async function handleOptOut() {
+    const confirmed = confirm("Are you sure you want to stop the study? Your participation is voluntary, and you can withdraw at any time. If you proceed, your current session will end.");
+
+    if (confirmed) {
+        console.log("User confirmed opt-out. Logging event...");
+        
+        // Log the specific 'study_opt_out' event for data exclusion
+        await trackEvent('study_opt_out', 'opt-out-button');
+
+        // Short delay to ensure event is sent before redirect
+        setTimeout(() => {
+            window.location.href = 'opt-out.html';
+        }, 600);
+    }
+}
+
+const optOutBtn = document.getElementById('opt-out-button');
+if (optOutBtn) {
+    optOutBtn.addEventListener('click', handleOptOut);
+}
+
 // Start
 document.addEventListener('DOMContentLoaded', init);
