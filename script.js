@@ -469,7 +469,7 @@ function handleSend() {
 
     // Disable further input for this phase (one prompt per phase)
     userInput.disabled = true;
-    userInput.placeholder = 'Prompt sent — please evaluate the answer above.';
+    userInput.placeholder = 'Prompt sent — please evaluate the answer.';
     if (sendBtn) sendBtn.disabled = true;
 
     // 3. Dynamic Delay based on input length
@@ -589,7 +589,7 @@ async function handleOptOut() {
 
     if (confirmed) {
         console.log("User confirmed opt-out. Logging event...");
-        
+
         // Log the specific 'study_opt_out' event for data exclusion
         await trackEvent('study_opt_out', 'opt-out-button');
 
