@@ -646,10 +646,10 @@ button:disabled {
 }
 
 .hero-section h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     /* Slightly smaller */
     font-weight: 800;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     /* Reduced margin */
     line-height: 1.1;
     letter-spacing: -0.04em;
@@ -698,12 +698,6 @@ button:disabled {
     box-shadow: var(--shadow-lg);
     /* Slightly smaller default shadow */
     border: 1px solid var(--border-color);
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
-}
-
-.landing-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
 }
 
 .landing-card h2 {
