@@ -155,6 +155,108 @@
             transform: translateY(0);
         }
 
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1.5px solid #e5e7eb;
+            margin-top: 0.5rem;
+        }
+
+        .likert-labels {
+            font-size: 0.85rem;
+            color: #4b5563;
+            font-weight: 600;
+            width: 80px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .likert-options {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .likert-options label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: #374151;
+        }
+
+        .likert-options input {
+            margin-bottom: 0.35rem;
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+
+        /* Draggable List Styles */
+        .ranking-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            cursor: grab;
+            transition: all 0.2s ease;
+            user-select: none;
+            position: relative;
+        }
+
+        .ranking-item:hover {
+            border-color: var(--primary-color);
+            background: #f5f3ff;
+            transform: translateX(4px);
+        }
+
+        .ranking-item.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+            background: #f5f3ff;
+            border-style: dashed;
+        }
+
+        .rank-number {
+            width: 28px;
+            height: 28px;
+            background: #eef2ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            border: 1px solid #c7d2fe;
+        }
+
+        .drag-handle {
+            margin-left: auto;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+        }
+
+        .drag-handle svg { width: 1.25rem; height: 1.25rem; }
+
         #thank-you-message {
             display: none;
             text-align: center;
@@ -230,6 +332,242 @@
                     </div>
 
                     <div class="form-group full-width">
+                        <label for="source-verification-freq">In your everyday use of AI tools, how often do you
+                            actively click on and read the provided source citations to verify the AI's claims?</label>
+                        <select id="source-verification-freq" name="source_verification_freq" required>
+                            <option value="" disabled selected>Select frequency</option>
+                            <option value="5">Always</option>
+                            <option value="4">Often</option>
+                            <option value="3">Sometimes</option>
+                            <option value="2">Rarely</option>
+                            <option value="1">Never</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
+                        Interface Evaluation</h3>
+
+                    <div class="form-group full-width">
+                        <label>Please rate how mentally demanding it was to verify the AI's statements using the sources
+                            provided in the following interfaces:</label>
+
+                        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
+                            Classic Interface (Clickable numbers/links at the end of text)</div>
+                        <div class="likert-scale">
+                            <span class="likert-labels">[1]<br>Very Low</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="mental_demand_classic" value="1" required>1</label>
+                                <label><input type="radio" name="mental_demand_classic" value="2">2</label>
+                                <label><input type="radio" name="mental_demand_classic" value="3">3</label>
+                                <label><input type="radio" name="mental_demand_classic" value="4">4</label>
+                                <label><input type="radio" name="mental_demand_classic" value="5">5</label>
+                            </div>
+                            <span class="likert-labels">[5]<br>Very High</span>
+                        </div>
+
+                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
+                            Side-by-side view with automatic source display</div>
+                        <div class="likert-scale">
+                            <span class="likert-labels">[1]<br>Very Low</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="mental_demand_low_friction" value="1"
+                                        required>1</label>
+                                <label><input type="radio" name="mental_demand_low_friction" value="2">2</label>
+                                <label><input type="radio" name="mental_demand_low_friction" value="3">3</label>
+                                <label><input type="radio" name="mental_demand_low_friction" value="4">4</label>
+                                <label><input type="radio" name="mental_demand_low_friction" value="5">5</label>
+                            </div>
+                            <span class="likert-labels">[5]<br>Very High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>The need to click a link and switch to a different window in the Classic Interface
+                            disrupted my task workflow.</label>
+                        <div class="likert-scale">
+                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="workflow_disruption" value="1" required>1</label>
+                                <label><input type="radio" name="workflow_disruption" value="2">2</label>
+                                <label><input type="radio" name="workflow_disruption" value="3">3</label>
+                                <label><input type="radio" name="workflow_disruption" value="4">4</label>
+                                <label><input type="radio" name="workflow_disruption" value="5">5</label>
+                            </div>
+                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>I experienced mental or visual fatigue while trying to verify the AI's answers against
+                            the source documents.</label>
+                        <div class="likert-scale">
+                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="fatigue" value="1" required>1</label>
+                                <label><input type="radio" name="fatigue" value="2">2</label>
+                                <label><input type="radio" name="fatigue" value="3">3</label>
+                                <label><input type="radio" name="fatigue" value="4">4</label>
+                                <label><input type="radio" name="fatigue" value="5">5</label>
+                            </div>
+                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">Trust &
+                        Confidence</h3>
+
+                    <div class="form-group full-width">
+                        <label>Please rate your overall level of trust in the factual accuracy of the AI's answers for
+                            each interface:</label>
+
+                        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
+                            Classic Interface</div>
+                        <div class="likert-scale">
+                            <span class="likert-labels">Very Low</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="trust_classic" value="1" required>1</label>
+                                <label><input type="radio" name="trust_classic" value="2">2</label>
+                                <label><input type="radio" name="trust_classic" value="3">3</label>
+                                <label><input type="radio" name="trust_classic" value="4">4</label>
+                                <label><input type="radio" name="trust_classic" value="5">5</label>
+                            </div>
+                            <span class="likert-labels">Very High</span>
+                        </div>
+
+                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">No
+                            Reference Interface (AI text only, no links)</div>
+                        <div class="likert-scale">
+                            <span class="likert-labels">Very Low</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="trust_no_ref" value="1" required>1</label>
+                                <label><input type="radio" name="trust_no_ref" value="2">2</label>
+                                <label><input type="radio" name="trust_no_ref" value="3">3</label>
+                                <label><input type="radio" name="trust_no_ref" value="4">4</label>
+                                <label><input type="radio" name="trust_no_ref" value="5">5</label>
+                            </div>
+                            <span class="likert-labels">Very High</span>
+                        </div>
+
+                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
+                            Side-by-side-view</div>
+                        <div class="likert-scale">
+                            <span class="likert-labels">Very Low</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="trust_low_friction" value="1" required>1</label>
+                                <label><input type="radio" name="trust_low_friction" value="2">2</label>
+                                <label><input type="radio" name="trust_low_friction" value="3">3</label>
+                                <label><input type="radio" name="trust_low_friction" value="4">4</label>
+                                <label><input type="radio" name="trust_low_friction" value="5">5</label>
+                            </div>
+                            <span class="likert-labels">Very High</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>The mere visual presence of citation links made me feel more confident in the AI's
+                            answer, even before I checked the source document.</label>
+                        <div class="likert-scale">
+                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="citation_effect" value="1" required>1</label>
+                                <label><input type="radio" name="citation_effect" value="2">2</label>
+                                <label><input type="radio" name="citation_effect" value="3">3</label>
+                                <label><input type="radio" name="citation_effect" value="4">4</label>
+                                <label><input type="radio" name="citation_effect" value="5">5</label>
+                            </div>
+                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>When the AI's answer sounded professional and well-formulated, I felt less need to
+                            cross-check it against the source material.</label>
+                        <div class="likert-scale">
+                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="confidence_override" value="1" required>1</label>
+                                <label><input type="radio" name="confidence_override" value="2">2</label>
+                                <label><input type="radio" name="confidence_override" value="3">3</label>
+                                <label><input type="radio" name="confidence_override" value="4">4</label>
+                                <label><input type="radio" name="confidence_override" value="5">5</label>
+                            </div>
+                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
+                        Preferences & Overall Experience</h3>
+
+                    <div class="form-group full-width">
+                        <label>Based on your experience today, please rank the three interfaces from 1 (Most Preferred)
+                            to 3 (Least Preferred) for everyday work tasks. <strong>(Drag to reorder)</strong></label>
+                        <div id="ranking-container" class="ranking-list">
+                            <div class="ranking-item" draggable="true" data-id="classic">
+                                <div class="rank-number">1</div>
+                                <span style="font-weight: 600; font-size: 0.95rem;">Classic Interface (Links at the end)</span>
+                                <div class="drag-handle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16"/></svg>
+                                </div>
+                            </div>
+                            <div class="ranking-item" draggable="true" data-id="no_ref">
+                                <div class="rank-number">2</div>
+                                <span style="font-weight: 600; font-size: 0.95rem;">No Reference Interface (AI text only)</span>
+                                <div class="drag-handle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16"/></svg>
+                                </div>
+                            </div>
+                            <div class="ranking-item" draggable="true" data-id="low_friction">
+                                <div class="rank-number">3</div>
+                                <span style="font-weight: 600; font-size: 0.95rem;">Side-by-side-view (Automatic display)</span>
+                                <div class="drag-handle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Which interface made it easiest to cross-reference information and detect potential
+                            factual errors?</label>
+                        <select name="error_detection_ease" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="classic">Classic Interface</option>
+                            <option value="no_ref">No Reference Interface</option>
+                            <option value="low_friction">Side-by-side-view</option>
+                            <option value="equal">I found them all equally difficult/easy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="preference_reasoning">Why did you rank your top interface as the best?</label>
+                        <textarea id="preference_reasoning" name="preference_reasoning" rows="3" required
+                            placeholder="Please explain your reasoning..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="perceived_purpose">What do you think was the primary purpose of this study?</label>
+                        <textarea id="perceived_purpose" name="perceived_purpose" rows="2" required
+                            placeholder="Your thoughts..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="suspicion_check">Did you notice any patterns or anything unusual about the accuracy
+                            of the AI's responses across the different tasks? If yes, please describe.</label>
+                        <textarea id="suspicion_check" name="suspicion_check" rows="3" required
+                            placeholder="Your observations..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
+                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">Any
+                        Other Feedback?</h3>
+                    <div class="form-group full-width">
                         <label for="comment">Any additional feedback? (Optional)</label>
                         <textarea id="comment" name="comment" rows="3"
                             placeholder="Tell us about your experience..."></textarea>
@@ -266,6 +604,49 @@
             const formWrapper = document.getElementById('questionnaire-form-wrapper');
             const thankYouMessage = document.getElementById('thank-you-message');
 
+            // Drag and Drop Logic
+            const draggables = document.querySelectorAll('.ranking-item');
+            const container = document.getElementById('ranking-container');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', () => {
+                    draggable.classList.add('dragging');
+                });
+
+                draggable.addEventListener('dragend', () => {
+                    draggable.classList.remove('dragging');
+                    // Recalculate numbers
+                    document.querySelectorAll('.rank-number').forEach((num, index) => {
+                        num.textContent = index + 1;
+                    });
+                });
+            });
+
+            container.addEventListener('dragover', e => {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(container, e.clientY);
+                const draggable = document.querySelector('.dragging');
+                if (afterElement == null) {
+                    container.appendChild(draggable);
+                } else {
+                    container.insertBefore(draggable, afterElement);
+                }
+            });
+
+            function getDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.ranking-item:not(.dragging)')];
+
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 submitBtn.disabled = true;
@@ -273,6 +654,12 @@
 
                 const formData = new FormData(form);
                 const rawData = Object.fromEntries(formData.entries());
+
+                // Extract ranking from draggable list
+                const rankings = [...document.querySelectorAll('.ranking-item')];
+                const pref_classic = rankings.findIndex(item => item.dataset.id === 'classic') + 1;
+                const pref_no_ref = rankings.findIndex(item => item.dataset.id === 'no_ref') + 1;
+                const pref_low_friction = rankings.findIndex(item => item.dataset.id === 'low_friction') + 1;
 
                 // Prepare data for Supabase insert into 'questionaire_ans'
                 const sessionUserId = sessionStorage.getItem('app_session_id') || 'unknown';
@@ -282,6 +669,23 @@
                     age: parseInt(rawData.age),
                     gender: rawData.gender,
                     ai_frequency: parseInt(rawData.ai_frequency),
+                    source_verification_freq: parseInt(rawData.source_verification_freq),
+                    mental_demand_classic: parseInt(rawData.mental_demand_classic),
+                    mental_demand_low_friction: parseInt(rawData.mental_demand_low_friction),
+                    workflow_disruption: parseInt(rawData.workflow_disruption),
+                    fatigue: parseInt(rawData.fatigue),
+                    trust_classic: parseInt(rawData.trust_classic),
+                    trust_no_ref: parseInt(rawData.trust_no_ref),
+                    trust_low_friction: parseInt(rawData.trust_low_friction),
+                    citation_effect: parseInt(rawData.citation_effect),
+                    confidence_override: parseInt(rawData.confidence_override),
+                    pref_classic: pref_classic,
+                    pref_no_ref: pref_no_ref,
+                    pref_low_friction: pref_low_friction,
+                    error_detection_ease: rawData.error_detection_ease,
+                    preference_reasoning: rawData.preference_reasoning || "",
+                    perceived_purpose: rawData.perceived_purpose || "",
+                    suspicion_check: rawData.suspicion_check || "",
                     comment: rawData.comment || ""
                 };
 
