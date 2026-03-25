@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Questionnaire - Study</title>
+    <title>Abschlussfragebogen - Studie</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -28,7 +28,7 @@
             padding: 3rem;
             border-radius: 1.5rem;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            max-width: 650px;
+            max-width: 900px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -255,7 +255,10 @@
             align-items: center;
         }
 
-        .drag-handle svg { width: 1.25rem; height: 1.25rem; }
+        .drag-handle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
 
         #thank-you-message {
             display: none;
@@ -285,78 +288,79 @@
             font-size: 2rem;
             margin: 0 auto 1.5rem;
         }
+
     </style>
 </head>
 
 <body>
     <main class="questionnaire-container">
         <div id="questionnaire-form-wrapper">
-            <header style="margin-bottom: 2.5rem; text-align: center; position: relative;">
-                <div style="position: absolute; right: 0; top: 0;">
-                    <button id="opt-out-button" class="opt-out-button">Stop Study</button>
+            <header style="margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+                <h1 style="margin: 0; text-align: left; white-space: nowrap;">Fast geschafft!</h1>
+                <p style="margin: 0; text-align: center; flex: 1; color: #4b5563; font-size: 1rem;">Bitte teile uns noch einige abschließende Details mit.</p>
+                <div style="flex-shrink: 0;">
+                    <button id="opt-out-button" class="opt-out-button">Studie beenden</button>
                 </div>
-                <h1>Almost Done!</h1>
-                <p>Please share some final details to complete the study.</p>
             </header>
 
             <form id="demographic-form">
                 <div class="form-section">
                     <div class="form-group full-width">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="age" required min="18" max="100" placeholder="Years">
+                        <label for="age">Alter</label>
+                        <input type="number" id="age" name="age" required min="18" max="100" placeholder="Jahre">
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Gender</label>
+                        <label>Geschlecht</label>
                         <div class="radio-grid">
                             <label class="radio-option"><input type="radio" name="gender" value="m" required>
-                                Male</label>
-                            <label class="radio-option"><input type="radio" name="gender" value="f"> Female</label>
+                                Männlich</label>
+                            <label class="radio-option"><input type="radio" name="gender" value="f"> Weiblich</label>
                             <label class="radio-option"><input type="radio" name="gender" value="d">
-                                Diverse</label>
-                            <label class="radio-option"><input type="radio" name="gender" value="n"> Prefer not
-                                to say</label>
+                                Divers</label>
+                            <label class="radio-option"><input type="radio" name="gender" value="n"> Keine
+                                Angabe</label>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="ai-frequency">How often do you use AI Chatbots?</label>
+                        <label for="ai-frequency">Wie häufig nutzt du KI-Chatbots?</label>
                         <select id="ai-frequency" name="ai_frequency" required>
-                            <option value="" disabled selected>Select frequency</option>
-                            <option value="1">Never used before</option>
-                            <option value="2">Rarely (monthly or less)</option>
-                            <option value="3">Sometimes (bi-weekly)</option>
-                            <option value="4">Frequently (weekly)</option>
-                            <option value="5">Daily</option>
+                            <option value="" disabled selected>Häufigkeit auswählen</option>
+                            <option value="1">Noch nie genutzt</option>
+                            <option value="2">Selten (monatlich oder weniger)</option>
+                            <option value="3">Manchmal (alle zwei Wochen)</option>
+                            <option value="4">Häufig (wöchentlich)</option>
+                            <option value="5">Täglich</option>
                         </select>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="source-verification-freq">In your everyday use of AI tools, how often do you
-                            actively click on and read the provided source citations to verify the AI's claims?</label>
+                        <label for="source-verification-freq">Wie häufig klickst du im Alltag bei KI-Tools aktiv auf
+                            die angegebenen Quellenangaben, um die Aussagen der KI zu überprüfen?</label>
                         <select id="source-verification-freq" name="source_verification_freq" required>
-                            <option value="" disabled selected>Select frequency</option>
-                            <option value="5">Always</option>
-                            <option value="4">Often</option>
-                            <option value="3">Sometimes</option>
-                            <option value="2">Rarely</option>
-                            <option value="1">Never</option>
+                            <option value="" disabled selected>Häufigkeit auswählen</option>
+                            <option value="5">Immer</option>
+                            <option value="4">Oft</option>
+                            <option value="3">Manchmal</option>
+                            <option value="2">Selten</option>
+                            <option value="1">Nie</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
                     <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
-                        Interface Evaluation</h3>
+                        Oberflächen-Bewertung</h3>
 
                     <div class="form-group full-width">
-                        <label>Please rate how mentally demanding it was to verify the AI's statements using the sources
-                            provided in the following interfaces:</label>
+                        <label>Bitte bewerte, wie kognitiv anspruchsvoll es war, die Aussagen der KI mithilfe der
+                            bereitgestellten Quellen in den folgenden Oberflächen zu überprüfen:</label>
 
                         <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Classic Interface (Clickable numbers/links at the end of text)</div>
+                            Klassische Oberfläche (Klickbare Zahlen/Links am Ende des Textes)</div>
                         <div class="likert-scale">
-                            <span class="likert-labels">[1]<br>Very Low</span>
+                            <span class="likert-labels">[1]<br>Sehr gering</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="mental_demand_classic" value="1" required>1</label>
                                 <label><input type="radio" name="mental_demand_classic" value="2">2</label>
@@ -364,13 +368,13 @@
                                 <label><input type="radio" name="mental_demand_classic" value="4">4</label>
                                 <label><input type="radio" name="mental_demand_classic" value="5">5</label>
                             </div>
-                            <span class="likert-labels">[5]<br>Very High</span>
+                            <span class="likert-labels">[5]<br>Sehr hoch</span>
                         </div>
 
                         <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Side-by-side view with automatic source display</div>
+                            Side-by-side-Ansicht (automatische Quellenanzeige)</div>
                         <div class="likert-scale">
-                            <span class="likert-labels">[1]<br>Very Low</span>
+                            <span class="likert-labels">[1]<br>Sehr gering</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="mental_demand_low_friction" value="1"
                                         required>1</label>
@@ -379,15 +383,15 @@
                                 <label><input type="radio" name="mental_demand_low_friction" value="4">4</label>
                                 <label><input type="radio" name="mental_demand_low_friction" value="5">5</label>
                             </div>
-                            <span class="likert-labels">[5]<br>Very High</span>
+                            <span class="likert-labels">[5]<br>Sehr hoch</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>The need to click a link and switch to a different window in the Classic Interface
-                            disrupted my task workflow.</label>
+                        <label>Die Notwendigkeit, in der klassischen Oberfläche auf einen Link zu klicken und in ein
+                            anderes Fenster zu wechseln, hat meinen Arbeitsfluss gestört.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="workflow_disruption" value="1" required>1</label>
                                 <label><input type="radio" name="workflow_disruption" value="2">2</label>
@@ -395,15 +399,15 @@
                                 <label><input type="radio" name="workflow_disruption" value="4">4</label>
                                 <label><input type="radio" name="workflow_disruption" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>I experienced mental or visual fatigue while trying to verify the AI's answers against
-                            the source documents.</label>
+                        <label>Ich habe mentale oder visuelle Ermüdung erlebt, als ich versuchte, die Antworten
+                            der KI anhand der Quelldokumente zu überprüfen.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="fatigue" value="1" required>1</label>
                                 <label><input type="radio" name="fatigue" value="2">2</label>
@@ -411,23 +415,24 @@
                                 <label><input type="radio" name="fatigue" value="4">4</label>
                                 <label><input type="radio" name="fatigue" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
-                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">Trust &
-                        Confidence</h3>
+                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
+                        Vertrauen &
+                        Zuversicht</h3>
 
                     <div class="form-group full-width">
-                        <label>Please rate your overall level of trust in the factual accuracy of the AI's answers for
-                            each interface:</label>
+                        <label>Bitte bewerte dein allgemeines Vertrauensniveau in die sachliche Richtigkeit der
+                            KI-Antworten für jede Oberfläche:</label>
 
                         <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Classic Interface</div>
+                            Klassische Oberfläche</div>
                         <div class="likert-scale">
-                            <span class="likert-labels">Very Low</span>
+                            <span class="likert-labels">Sehr gering</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="trust_classic" value="1" required>1</label>
                                 <label><input type="radio" name="trust_classic" value="2">2</label>
@@ -435,13 +440,13 @@
                                 <label><input type="radio" name="trust_classic" value="4">4</label>
                                 <label><input type="radio" name="trust_classic" value="5">5</label>
                             </div>
-                            <span class="likert-labels">Very High</span>
+                            <span class="likert-labels">Sehr hoch</span>
                         </div>
 
-                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">No
-                            Reference Interface (AI text only, no links)</div>
+                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
+                            Keine-Referenz-Oberfläche (nur KI-Text, keine Links)</div>
                         <div class="likert-scale">
-                            <span class="likert-labels">Very Low</span>
+                            <span class="likert-labels">Sehr gering</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="trust_no_ref" value="1" required>1</label>
                                 <label><input type="radio" name="trust_no_ref" value="2">2</label>
@@ -449,13 +454,13 @@
                                 <label><input type="radio" name="trust_no_ref" value="4">4</label>
                                 <label><input type="radio" name="trust_no_ref" value="5">5</label>
                             </div>
-                            <span class="likert-labels">Very High</span>
+                            <span class="likert-labels">Sehr hoch</span>
                         </div>
 
                         <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
                             Side-by-side-view</div>
                         <div class="likert-scale">
-                            <span class="likert-labels">Very Low</span>
+                            <span class="likert-labels">Sehr gering</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="trust_low_friction" value="1" required>1</label>
                                 <label><input type="radio" name="trust_low_friction" value="2">2</label>
@@ -463,15 +468,15 @@
                                 <label><input type="radio" name="trust_low_friction" value="4">4</label>
                                 <label><input type="radio" name="trust_low_friction" value="5">5</label>
                             </div>
-                            <span class="likert-labels">Very High</span>
+                            <span class="likert-labels">Sehr hoch</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>The mere visual presence of citation links made me feel more confident in the AI's
-                            answer, even before I checked the source document.</label>
+                        <label>Allein die visuelle Präsenz von Zitationslinks hat mich zuversichtlicher in Bezug auf
+                            die KI-Antwort gemacht, noch bevor ich das Quelldokument überprüft habe.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="citation_effect" value="1" required>1</label>
                                 <label><input type="radio" name="citation_effect" value="2">2</label>
@@ -479,15 +484,15 @@
                                 <label><input type="radio" name="citation_effect" value="4">4</label>
                                 <label><input type="radio" name="citation_effect" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>When the AI's answer sounded professional and well-formulated, I felt less need to
-                            cross-check it against the source material.</label>
+                        <label>Wenn die Antwort der KI professionell und gut formuliert klang, hatte ich weniger
+                            das Bedürfnis, sie mit dem Quellmaterial zu vergleichen.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Strongly Disagree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="confidence_override" value="1" required>1</label>
                                 <label><input type="radio" name="confidence_override" value="2">2</label>
@@ -495,89 +500,101 @@
                                 <label><input type="radio" name="confidence_override" value="4">4</label>
                                 <label><input type="radio" name="confidence_override" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Strongly Agree</span>
+                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
                     <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
-                        Preferences & Overall Experience</h3>
+                        Präferenzen & Gesamterfahrung</h3>
 
                     <div class="form-group full-width">
-                        <label>Based on your experience today, please rank the three interfaces from 1 (Most Preferred)
-                            to 3 (Least Preferred) for everyday work tasks. <strong>(Drag to reorder)</strong></label>
+                        <label>Basierend auf deinen heutigen Erfahrungen, bitte ordne die drei Oberflächen von
+                            1 (Bevorzugt) bis 3 (Am wenigsten bevorzugt) für alltägliche Arbeitsaufgaben.
+                            <strong>(Ziehen zum Sortieren)</strong></label>
                         <div id="ranking-container" class="ranking-list">
                             <div class="ranking-item" draggable="true" data-id="classic">
                                 <div class="rank-number">1</div>
-                                <span style="font-weight: 600; font-size: 0.95rem;">Classic Interface (Links at the end)</span>
+                                <span style="font-weight: 600; font-size: 0.95rem;">Klassische Oberfläche (Links am
+                                    Ende)</span>
                                 <div class="drag-handle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16"/></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 10h16M4 14h16" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="ranking-item" draggable="true" data-id="no_ref">
                                 <div class="rank-number">2</div>
-                                <span style="font-weight: 600; font-size: 0.95rem;">No Reference Interface (AI text only)</span>
+                                <span style="font-weight: 600; font-size: 0.95rem;">Keine-Referenz-Oberfläche (nur
+                                    KI-Text)</span>
                                 <div class="drag-handle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16"/></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 10h16M4 14h16" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="ranking-item" draggable="true" data-id="low_friction">
                                 <div class="rank-number">3</div>
-                                <span style="font-weight: 600; font-size: 0.95rem;">Side-by-side-view (Automatic display)</span>
+                                <span style="font-weight: 600; font-size: 0.95rem;">Side-by-side-Ansicht (Automatische
+                                    Anzeige)</span>
                                 <div class="drag-handle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16M4 14h16"/></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 10h16M4 14h16" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Which interface made it easiest to cross-reference information and detect potential
-                            factual errors?</label>
+                        <label>Bei welcher Oberfläche war es am einfachsten, Informationen zu vergleichen und
+                            potenzielle Fehler zu erkennen?</label>
                         <select name="error_detection_ease" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="classic">Classic Interface</option>
-                            <option value="no_ref">No Reference Interface</option>
-                            <option value="low_friction">Side-by-side-view</option>
-                            <option value="equal">I found them all equally difficult/easy</option>
+                            <option value="" disabled selected>Option auswählen</option>
+                            <option value="classic">Klassische Oberfläche</option>
+                            <option value="no_ref">Keine-Referenz-Oberfläche</option>
+                            <option value="low_friction">Side-by-side-Ansicht</option>
+                            <option value="equal">Alle waren gleich schwierig/einfach</option>
                         </select>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="preference_reasoning">Why did you rank your top interface as the best?</label>
+                        <label for="preference_reasoning">Warum hast du deine bevorzugte Oberfläche am besten
+                            bewertet?</label>
                         <textarea id="preference_reasoning" name="preference_reasoning" rows="3" required
-                            placeholder="Please explain your reasoning..."></textarea>
+                            placeholder="Bitte begründe deine Entscheidung..."></textarea>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="perceived_purpose">What do you think was the primary purpose of this study?</label>
+                        <label for="perceived_purpose">Was denkst du, war der primäre Zweck dieser Studie?</label>
                         <textarea id="perceived_purpose" name="perceived_purpose" rows="2" required
-                            placeholder="Your thoughts..."></textarea>
+                            placeholder="Deine Gedanken..."></textarea>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="suspicion_check">Did you notice any patterns or anything unusual about the accuracy
-                            of the AI's responses across the different tasks? If yes, please describe.</label>
+                        <label for="suspicion_check">Hast du bei den verschiedenen Aufgaben Muster oder etwas
+                            Ungewöhnliches bezüglich der Genauigkeit der KI-Antworten bemerkt? Falls ja, beschreibe es
+                            bitte.</label>
                         <textarea id="suspicion_check" name="suspicion_check" rows="3" required
-                            placeholder="Your observations..."></textarea>
+                            placeholder="Deine Beobachtungen..."></textarea>
                     </div>
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
-                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">Any
-                        Other Feedback?</h3>
+                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
+                        Sonstiges Feedback?</h3>
                     <div class="form-group full-width">
-                        <label for="comment">Any additional feedback? (Optional)</label>
+                        <label for="comment">Weiteres Feedback? (Optional)</label>
                         <textarea id="comment" name="comment" rows="3"
-                            placeholder="Tell us about your experience..."></textarea>
+                            placeholder="Erzähl uns von deiner Erfahrung..."></textarea>
                     </div>
                 </div>
 
                 <div style="display: flex; flex-direction: column;">
-                    <button type="submit" id="submit-btn">Complete Study</button>
+                    <button type="submit" id="submit-btn">Studie abschließen</button>
                     <p style="text-align: center; font-size: 0.75rem; color: #9ca3af; margin-top: 1rem;">
-                        Your data is stored anonymously for academic purposes.
+                        Deine Daten werden für wissenschaftliche Zwecke anonym gespeichert.
                     </p>
                 </div>
             </form>
@@ -585,11 +602,11 @@
 
         <div id="thank-you-message">
             <div class="success-icon">✓</div>
-            <h2>Great Job!</h2>
-            <p>Your responses have been successfully recorded. Thank you for your valuable contribution to my Master's
-                Thesis.</p>
+            <h2>Vielen Dank!</h2>
+            <p>Deine Antworten wurden erfolgreich gespeichert. Vielen Dank für deinen wertvollen Beitrag zu meiner
+                Masterarbeit.</p>
             <div style="margin-top: 2rem; padding: 1.5rem; background: #f3f4f6; border-radius: 1rem;">
-                <p style="font-weight: 600; font-size: 0.875rem;">You may now close this browser tab.</p>
+                <p style="font-weight: 600; font-size: 0.875rem;">Du kannst diesen Browser-Tab jetzt schließen.</p>
             </div>
         </div>
     </main>
@@ -650,7 +667,7 @@
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Submitting...';
+                submitBtn.textContent = 'Wird übermittelt...';
 
                 const formData = new FormData(form);
                 const rawData = Object.fromEntries(formData.entries());
@@ -699,9 +716,9 @@
 
                     if (error) {
                         console.error("Supabase error:", error);
-                        alert("There was an error submitting your response. Please try again.");
+                        alert("Beim Übermitteln deiner Antwort ist ein Fehler aufgetreten. Bitte versuche es erneut.");
                         submitBtn.disabled = false;
-                        submitBtn.textContent = 'Complete Study';
+                        submitBtn.textContent = 'Studie abschließen';
                         return;
                     }
                     success = true;
@@ -717,6 +734,8 @@
             });
         });
     </script>
+
+
 </body>
 
 </html>
