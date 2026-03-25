@@ -210,17 +210,17 @@ async function logTaskAnswer(selectedValue, optionalComment = '') {
         const p = currentPhase;
         // Mapping of logic (Task -> Step & Phase):
         // Task 1: (HR: Fitness) -> correct is 40 ('1')
-        if (s === 1 && p === 1 && selectedValue === '1') isCorrect = true;     
+        if (s === 1 && p === 1 && selectedValue === '1') isCorrect = true;
         // Task 2: (HR: Kernzeit) -> KI hallucinates 09:00, correct is 10:00 ('2')
-        if (s === 1 && p === 2 && selectedValue === '2') isCorrect = true;   
+        if (s === 1 && p === 2 && selectedValue === '2') isCorrect = true;
         // Task 3: (IT: Passwort) -> KI hallucinates 60, correct is 90 ('2')
-        if (s === 2 && p === 1 && selectedValue === '2') isCorrect = true;   
+        if (s === 2 && p === 1 && selectedValue === '2') isCorrect = true;
         // Task 4: (IT: Laptop) -> correct is 2h ('1')
-        if (s === 2 && p === 2 && selectedValue === '1') isCorrect = true;     
+        if (s === 2 && p === 2 && selectedValue === '1') isCorrect = true;
         // Task 5: (Travel: Hotel) -> correct is 120 ('1')
-        if (s === 3 && p === 1 && selectedValue === '1') isCorrect = true;     
+        if (s === 3 && p === 1 && selectedValue === '1') isCorrect = true;
         // Task 6: (Travel: Taxi) -> KI hallucinates 20, correct is 22 ('2')
-        if (s === 3 && p === 2 && selectedValue === '2') isCorrect = true;   
+        if (s === 3 && p === 2 && selectedValue === '2') isCorrect = true;
     }
 
     const computedTaskNumber = ((appStep - 1) * 2 + currentPhase);
@@ -325,8 +325,8 @@ function renderTaskCard(phase) {
             </div>
 
             <div id="why-textbox-container" style="display: none; margin-bottom: 1rem;">
-                <label for="why-textarea" style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Why? (Optional)</label>
-                <textarea id="why-textarea" placeholder="Please elaborate..." style="width: 100%; padding: 0.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; margin-top: 0.25rem; resize: vertical; min-height: 60px; font-family: inherit; font-size: 0.85rem;"></textarea>
+                <label for="why-textarea" style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">Warum? (Optional)</label>
+                <textarea id="why-textarea" placeholder="Bitte erläutere deine Antwort..." style="width: 100%; padding: 0.5rem; border: 2px solid var(--border-color); border-radius: 0.5rem; margin-top: 0.25rem; resize: vertical; min-height: 60px; font-family: inherit; font-size: 0.85rem;"></textarea>
             </div>
 
             <button class="card-next-button" id="card-next-btn" disabled>
@@ -388,7 +388,7 @@ function handleCardNext() {
     if (whyContainer && whyContainer.style.display !== 'none' && whyTextarea) {
         whyReason = whyTextarea.value.trim();
     }
-    
+
     // Log the aggregated hover duration to interaction_logs BEFORE moving to the next phase
     if (cumulativeHoverTimeOnTarget > 0) {
         const expectedTaskNumber = ((appStep - 1) * 2 + currentPhase);
@@ -412,7 +412,7 @@ function handleCardNext() {
         const sendButton = document.getElementById('send-button');
         if (input) {
             input.disabled = false;
-            input.placeholder = 'Type your question...';
+            input.placeholder = 'Frage eingeben...';
         }
         if (sendButton) sendButton.disabled = false;
 
@@ -424,7 +424,7 @@ function handleCardNext() {
         const cardNextBtn = document.getElementById('card-next-btn');
         if (cardNextBtn) {
             cardNextBtn.disabled = true;
-            cardNextBtn.textContent = 'Navigating...';
+            cardNextBtn.textContent = 'Weiterleitung...';
         }
 
         // Use the same navigation logic as handleNextTask
@@ -503,12 +503,12 @@ function streamMessage(text, onComplete) {
             // Streaming complete — add citation if not InterfaceB
             if (!isInterfaceB) {
                 const citation = document.createElement('a');
-                
+
                 let linkUrl = currentDocUrl;
                 if (TASKS[appStep] && TASKS[appStep].phases[currentPhase] && TASKS[appStep].phases[currentPhase].highlightUrl) {
                     linkUrl = TASKS[appStep].phases[currentPhase].highlightUrl;
                 }
-                
+
                 citation.href = linkUrl;
                 citation.className = 'citation-link';
                 citation.target = '_blank';
@@ -551,7 +551,7 @@ function handleSend() {
 
     // Disable further input for this phase (one prompt per phase)
     userInput.disabled = true;
-    userInput.placeholder = 'Prompt sent — please evaluate the answer.';
+    userInput.placeholder = 'Bitte bewerte die Antwort.';
     if (sendBtn) sendBtn.disabled = true;
 
     // 3. Dynamic Delay based on input length
@@ -566,7 +566,7 @@ function handleSend() {
         // Retrieve the specific predefined AI answer for this task and phase
         const aiAnswer = (TASKS[appStep] && TASKS[appStep].phases[currentPhase])
             ? TASKS[appStep].phases[currentPhase].aiAnswer
-            : "I am unable to provide an answer at this time.";
+            : "Ich kann momentan keine Antwort geben.";
 
         // Post the AI answer word-by-word (streaming effect)
         streamMessage(aiAnswer, () => {
@@ -586,7 +586,7 @@ function handleSend() {
             console.log("Applying text highlight via postMessage...");
             const computedTaskNumber = ((appStep - 1) * 2 + currentPhase);
             const targetId = `highlight-task-${computedTaskNumber}`;
-            
+
             setTimeout(() => {
                 pdfFrame.contentWindow.postMessage({
                     type: 'apply_highlight',
@@ -663,7 +663,7 @@ if (nextTaskBtn) {
  * OPT-OUT HANDLER
  */
 async function handleOptOut() {
-    const confirmed = confirm("Are you sure you want to stop the study? Your participation is voluntary, and you can withdraw at any time. If you proceed, your current session will end.");
+    const confirmed = confirm("Möchtest du die Studie wirklich beenden? Deine Teilnahme ist freiwillig und du kannst jederzeit aufhören. Wenn du fortfährst, wird deine aktuelle Sitzung beendet.");
 
     if (confirmed) {
         console.log("User confirmed opt-out. Logging event...");
