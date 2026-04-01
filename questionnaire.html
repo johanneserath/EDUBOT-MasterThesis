@@ -596,41 +596,40 @@
                     <p style="text-align: center; font-size: 0.75rem; color: #9ca3af; margin-top: 1rem;">
                         Deine Daten werden für wissenschaftliche Zwecke anonym gespeichert.
                     </p>
-                </div>
-            </form>
-        </div>
-        
-        <div id="debriefing-section" style="display: none; max-width: 800px; margin: 0 auto;">
+                </div>        <div id="debriefing-section" style="display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s ease-out;">
             <header style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; border-bottom: none; padding: 0;">
-                <h1 style="background: linear-gradient(to right, var(--primary-color), #7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; margin: 0;">Studienaufklärung (Debriefing)</h1>
-                <p style="color: #4b5563; font-size: 1.1rem; font-weight: 500;">Vielen Dank für deine Teilnahme. Bevor wir die Studie abschließen, möchten wir dich über den wahren Hintergrund informieren.</p>
+                <h1 style="background: linear-gradient(to right, var(--primary-color), #7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; margin: 0;">Studienaufklärung (Debriefing)</h1>
+                <p style="color: #4b5563; font-size: 1.125rem; font-weight: 500;">Vielen Dank für deine Teilnahme! Bevor wir die Studie abschließen, möchten wir dich über den wissenschaftlichen Hintergrund informieren.</p>
             </header>
             
-            <div class="debriefing-content" style="line-height: 1.6; color: #374151; font-size: 1rem;">
-                <p style="margin-bottom: 1.25rem;">
-                    In dieser Studie wurde untersucht, wie unterschiedliche Benutzeroberflächen die Überprüfung von KI-generierten Informationen beeinflussen. 
-                    Dazu wurden in einigen Aufgaben gezielt <strong>falsche Informationen (Halluzinationen)</strong> in die Antworten der KI eingebaut.
+            <div class="debriefing-content" style="line-height: 1.7; color: #374151; font-size: 1.05rem;">
+                <p style="margin-bottom: 1.5rem;">
+                    In diesem Experiment wurde untersucht, wie unterschiedliche Benutzeroberflächen die menschliche Fähigkeit zur Überprüfung von <strong>KI-generierten Informationen (Halluzinationen)</strong> beeinflussen. 
+                    Dazu wurden in einigen Aufgaben gezielt falsche Informationen in die Antworten des Chatbots eingebaut.
                 </p>
-                <p style="margin-bottom: 1.25rem;">
-                    Ziel war es zu messen, wie effektiv und intuitiv die verschiedenen Interfaces (z.B. die Side-by-side-Ansicht im Vergleich zur klassischen Link-Liste) 
-                    dabei helfen, solche Fehler mithilfe der bereitgestellten Quelldokumente zu identifizieren.
+                
+                <p style="margin-bottom: 1.5rem;">
+                    Ein besonderer Fokus der Untersuchung lag auf dem Aspekt des <strong>Vertrauensaufbaus</strong>: Wir haben getestet, ob ein anfänglich hohes Vertrauen (durch korrekte Antworten zu Beginn der Interaktion) deine spätere Wachsamkeit gegenüber Fehlern in anderen Aufgaben verändert.
                 </p>
-                <div style="background: #f8fafc; border-left: 4px solid var(--primary-color); padding: 1rem; margin-bottom: 1.5rem; font-style: italic;">
-                    <p><strong>Wichtiger Hinweis:</strong> Sämtliche Antworten des Chatbots waren vorab festgeschrieben und folgten einem festen Skript. Deine eingegebenen Fragen (Prompts) hatten daher keinen Einfluss auf den Inhalt oder die Korrektheit der Antworten – dies diente der wissenschaftlichen Vergleichbarkeit der Ergebnisse.</p>
+
+                <div style="background: #fdf2f2; border-left: 4px solid #ef4444; padding: 1.25rem; margin-bottom: 2rem; border-radius: 0 0.75rem 0.75rem 0;">
+                    <p style="color: #991b1b; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">Wichtiger Hinweis zur Methodik:</p>
+                    <p style="color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;">Sämtliche Antworten des Chatbots waren vorab festgeschrieben und folgten einem strengen Skript. Deine eingegebenen Fragen hatten daher keinen Einfluss auf die Korrektheit der Antworten – dies diente der wissenschaftlichen Vergleichbarkeit der Ergebnisse für alle Teilnehmer.</p>
                 </div>
-                <p style="margin-bottom: 2rem; font-weight: 600; color: #1f2937;">
-                    Da du nun über die bewusste Täuschung durch fehlerhafte KI-Antworten informiert bist, hast du die Wahl, ob deine Daten weiterhin für die wissenschaftliche Auswertung verwendet werden dürfen:
+
+                <p style="margin-bottom: 2rem; font-weight: 700; color: #111827; font-size: 1.1rem; text-align: center;">
+                    Möchtest du deine Daten unter Berücksichtigung dieser Informationen für die Studie freigeben?
                 </p>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
-                <button id="debriefing-confirm-btn" type="button" style="background: linear-gradient(to right, #10b981, #059669); color: white; padding: 1.25rem; border-radius: 0.75rem; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.4);">
-                    Einverstanden (Daten für die Studie verwenden)
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem;">
+                <button id="debriefing-confirm-btn" type="button" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 1rem; font-weight: 800; font-size: 1.2rem; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3); text-transform: uppercase; letter-spacing: 0.025em;">
+                    Einverstanden (Daten verwenden)
                 </button>
-                <div style="background: #fff5f5; border: 1.5px solid #feb2b2; padding: 1.25rem; border-radius: 0.75rem; margin-top: 1rem;">
-                    <p style="color: #c53030; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; text-align: center;">Möchtest du deine Daten doch nicht freigeben?</p>
-                    <button id="debriefing-withdraw-btn" type="button" class="opt-out-button" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1.5px solid #fc8181; font-weight: 700; background: white; color: #c53030; cursor: pointer; transition: all 0.2s;">
-                        Einwilligung widerrufen (Daten nicht verwenden)
+                
+                <div style="text-align: center;">
+                    <button id="debriefing-withdraw-btn" type="button" style="background: transparent; color: #ef4444; font-weight: 600; font-size: 0.95rem; border: 2px solid transparent; text-decoration: underline; cursor: pointer; transition: all 0.2s; padding: 0.5rem;">
+                        Einwilligung widerrufen (Daten löschen)
                     </button>
                 </div>
             </div>

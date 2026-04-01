@@ -119,19 +119,14 @@
 
         beginBtn.addEventListener('click', () => {
             if (!beginBtn.disabled) {
-                const groups = ['G1', 'G2', 'G3'];
-                const assignedGroup = groups[Math.floor(Math.random() * groups.length)];
+                // Map interface filename to a selection
+                const interfaces = ['InterfaceA.html', 'interfaceB.html', 'interfaceC.html'];
+                const selectedInterface = interfaces[Math.floor(Math.random() * interfaces.length)];
 
-                sessionStorage.setItem('app_group', assignedGroup);
+                sessionStorage.setItem('app_interface', selectedInterface);
                 sessionStorage.setItem('app_step', '1');
 
-                const initialRoutes = {
-                    'G1': 'InterfaceA.html',
-                    'G2': 'interfaceB.html',
-                    'G3': 'interfaceC.html'
-                };
-
-                window.location.href = initialRoutes[assignedGroup];
+                window.location.href = selectedInterface;
             }
         });
     </script>
