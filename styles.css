@@ -201,8 +201,6 @@ header {
     justify-content: space-between;
     align-items: center;
     background: var(--header-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     z-index: 10;
 }
 
@@ -337,8 +335,6 @@ footer {
     padding: 1.5rem 2rem;
     border-top: 1px solid var(--border-color);
     background: var(--header-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .input-group {

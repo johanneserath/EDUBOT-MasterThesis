@@ -24,7 +24,7 @@ const TASKS = {
                     "1": "\"Bitte plane das Meeting im Fenster zwischen 09:00 und 15:00 Uhr.\"",
                     "2": "\"Bitte plane das Meeting im Fenster zwischen 10:00 und 15:00 Uhr.\""
                 },
-                aiAnswer: "Der IT-Support und der Kundenservice arbeiten mit eigenen Schichtplänen. In allen anderen Abteilungen ist eine verbindliche Kernarbeitszeit von 09:00 bis 15:00 Uhr festgelegt. Während dieses Zeitraums wird erwartet, dass das Team für Meetings und Kundenanrufe jederzeit erreichbar ist. In den Zeiten dazwischen gibt es Gleitzeit.",
+                aiAnswer: "Der IT-Support und der Kundenservice arbeiten mit eigenen Schichtplänen. In allen anderen Abteilungen ist eine verbindliche Kernarbeitszeit von 10:00 bis 15:00 Uhr festgelegt. Während dieses Zeitraums wird erwartet, dass das Team für Meetings und Kundenanrufe jederzeit erreichbar ist. In den Zeiten dazwischen gibt es Gleitzeit.",
                 highlightUrl: "doc2_hr-guideline.html#highlight-task-2"
             }
         }
@@ -51,7 +51,7 @@ const TASKS = {
                     "1": "\"Du musst den Verlust zwingend innerhalb von 2 Stunden melden.\"",
                     "2": "\"Du musst den Verlust zwingend innerhalb von 5 Stunden melden.\""
                 },
-                aiAnswer: "Bei Diebstahl, Liegenlassen oder physischem Verlust eines Firmen-Laptops, Tablets oder Diensthandys muss innerhalb von zwei Stunden nach Feststellung des Verlusts die IT-Hotline (+43 512 000-999) telefonisch benachrichtigt werden. Nur durch diese zügige Meldung kann eine umgehende Fernlöschung (Remote-Wipe) sämtlicher lokaler Daten eingeleitet und der Netzwerkzugang gesperrt werden. Eine E-Mail-Mitteilung ist bei Verlust von Hardware nicht ausreichend.",
+                aiAnswer: "Bei Diebstahl, Liegenlassen oder physischem Verlust eines Firmen-Laptops, Tablets oder Diensthandys muss innerhalb von fünf Stunden nach Feststellung des Verlusts die IT-Hotline (+43 512 000-999) telefonisch benachrichtigt werden. Nur durch diese zügige Meldung kann eine umgehende Fernlöschung (Remote-Wipe) sämtlicher lokaler Daten eingeleitet und der Netzwerkzugang gesperrt werden. Eine E-Mail-Mitteilung ist bei Verlust von Hardware nicht ausreichend.",
                 highlightUrl: "doc1_it-security.html#highlight-task-4"
             }
         }
@@ -89,7 +89,6 @@ const TASKS = {
 let currentPhase = 1;      // 1 or 2
 let promptSentInPhase = false;
 let optionSelectedInPhase = false;
-let cumulativeHoverTimeOnTarget = 0; // Tracks valid hover duration for the current active task
 
 // Detection for Interfaces
 const isInterfaceA = window.location.pathname.toLowerCase().includes('interfacea.html');
@@ -106,7 +105,6 @@ const INTERFACE_TYPE = isQuestionnaire ? "Q" : (isInterfaceC ? "C" : (isInterfac
 let currentDocUrl = "";
 
 let sessionId = "";
-let appGroup = sessionStorage.getItem('app_group') || "None";
 let appStep = parseInt(sessionStorage.getItem('app_step')) || 0;
 
 const chatWindow = document.getElementById('chat-window');
@@ -137,19 +135,17 @@ if (!supabaseClient) {
 /**
  * UTILITY: TRACK EVENT
  */
-async function trackEvent(eventType, elementId = null, hoverDurationMs = null) {
+async function trackEvent(eventType, elementId = null) {
     const computedTaskNumber = isQuestionnaire ? 0 : ((appStep - 1) * 2 + currentPhase);
     const computedPhaseNumber = isQuestionnaire ? 0 : appStep;
 
     const event = {
         user_id: sessionId,
-        group_id: appGroup,
         task_number: computedTaskNumber,
         phase_number: computedPhaseNumber,
         interface_type: INTERFACE_TYPE,
         event_type: eventType,
-        element_id: elementId,
-        hover_duration_ms: hoverDurationMs
+        element_id: elementId
     };
 
     console.log("Tracking event:", event);
@@ -182,8 +178,7 @@ async function logChatPrompt(promptText) {
         prompt_text: promptText,
         interface_type: INTERFACE_TYPE,
         task_number: computedTaskNumber,
-        phase_number: computedPhaseNumber,
-        group_id: appGroup
+        phase_number: computedPhaseNumber
     };
 
     console.log("Logging chat prompt:", data);
@@ -226,7 +221,6 @@ async function logTaskAnswer(selectedValue) {
 
     const data = {
         user_id: sessionId,
-        group_id: appGroup,
         interface_type: INTERFACE_TYPE,
         task_number: computedTaskNumber,
         phase_number: computedPhaseNumber,
@@ -374,14 +368,6 @@ function handleCardNext() {
     // 1. Get the selected option BEFORE we move to phase 2 or navigate away
     const selectedRadio = document.querySelector(`input[name="accuracy-${currentPhase}"]:checked`);
     const selectedValue = selectedRadio ? selectedRadio.value : 'none';
-
-
-    // Log the aggregated hover duration to interaction_logs BEFORE moving to the next phase
-    if (cumulativeHoverTimeOnTarget > 0) {
-        const expectedTaskNumber = ((appStep - 1) * 2 + currentPhase);
-        trackEvent('target_hover_completed', `highlight-task-${expectedTaskNumber}`, cumulativeHoverTimeOnTarget);
-        cumulativeHoverTimeOnTarget = 0; // Reset for the next phase!
-    }
 
     // Log the answer to the task answers table
     logTaskAnswer(selectedValue);
@@ -588,24 +574,17 @@ function handleSend() {
  * NEXT TASK HANDLER
  */
 function handleNextTask() {
-    const sequences = {
-        'G1': ['InterfaceA.html', 'interfaceB.html', 'interfaceC.html'],
-        'G2': ['interfaceB.html', 'interfaceC.html', 'InterfaceA.html'],
-        'G3': ['interfaceC.html', 'InterfaceA.html', 'interfaceB.html']
-    };
-
-    const currentSequence = sequences[appGroup];
+    // Each participant now stays in the same interface for all 3 steps
+    const assignedInterface = sessionStorage.getItem('app_interface');
 
     if (appStep < 3) {
         const nextStep = appStep + 1;
-        const nextInterface = currentSequence[nextStep - 1];
-
         sessionStorage.setItem('app_step', nextStep.toString());
         trackEvent('next_task_click', 'next-task-button');
 
         // Short delay to ensure tracking event is sent
         setTimeout(() => {
-            window.location.href = nextInterface;
+            window.location.href = assignedInterface;
         }, 500);
     } else {
         trackEvent('all_tasks_completed', 'next-task-button');
@@ -669,22 +648,6 @@ const optOutBtn = document.getElementById('opt-out-button');
 if (optOutBtn) {
     optOutBtn.addEventListener('click', handleOptOut);
 }
-
-// Add global listener for hover tracking events deeply nested in iframes
-window.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'source_tracking_event') {
-        if (event.data.action === 'target_hover_completed') {
-            const expectedTaskNumber = ((appStep - 1) * 2 + currentPhase);
-            const expectedId = `highlight-task-${expectedTaskNumber}`;
-
-            // Only sum up time spent hovering over the EXACT right paragraph for the current question
-            if (event.data.elementId === expectedId) {
-                cumulativeHoverTimeOnTarget += event.data.durationMs;
-                console.log(`Accumulated +${event.data.durationMs}ms hover on Target ${expectedId}. Total now: ${cumulativeHoverTimeOnTarget}ms`);
-            }
-        }
-    }
-});
 
 // Start
 document.addEventListener('DOMContentLoaded', init);
