@@ -4,6 +4,7 @@ const PDF_BASE_URL = "MT0_ErathJohannes_2_Pager.pdf";
 const TASKS = {
     1: {
         docUrl: "doc2_hr-guideline.html",
+        docDisplayName: "HR-Richtlinie (PDF)",
         topic: "HR & Corporate Benefits",
         description: "Du bearbeitest zwei Tickets zum Thema Personalrichtlinien und Zusatzleistungen.",
         phases: {
@@ -31,6 +32,7 @@ const TASKS = {
     },
     2: {
         docUrl: "doc1_it-security.html",
+        docDisplayName: "IT-Security (PDF)",
         topic: "IT-Sicherheit & Hardware",
         description: "Du bearbeitest zwei Tickets zum Thema IT-Sicherheitsprotokolle.",
         phases: {
@@ -58,6 +60,7 @@ const TASKS = {
     },
     3: {
         docUrl: "doc3_travel-policy.html",
+        docDisplayName: "Travel-Policy (PDF)",
         topic: "Travel-Policy",
         description: "Du bearbeitest zwei Tickets zum Thema Geschäftsreisen.",
         phases: {
@@ -296,7 +299,7 @@ function renderTaskCard(phase) {
                 <span class="task-label">Phase ${appStep} — Task ${computedTaskNumber}</span>
                 <a href="${task.docUrl}" class="source-link" target="_blank" rel="opener">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    Quelle verifizieren
+                    ${task.docDisplayName || "Quelle verifizieren"}
                 </a>
             </div>
             <h2 class="task-card-heading">${task.topic}</h2>
