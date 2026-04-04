@@ -156,8 +156,8 @@
         }
 
         .likert-scale {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 140px 1fr 140px;
             align-items: center;
             background: #f9fafb;
             padding: 1rem;
@@ -170,7 +170,7 @@
             font-size: 0.85rem;
             color: #4b5563;
             font-weight: 600;
-            width: 80px;
+            width: 140px;
             text-align: center;
             line-height: 1.3;
         }
@@ -196,68 +196,6 @@
             margin-bottom: 0.35rem;
             cursor: pointer;
             transform: scale(1.2);
-        }
-
-        /* Draggable List Styles */
-        .ranking-list {
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .ranking-item {
-            display: flex;
-            align-items: center;
-            background: #ffffff;
-            border: 2px solid #e5e7eb;
-            padding: 0.75rem 1rem;
-            border-radius: 0.75rem;
-            cursor: grab;
-            transition: all 0.2s ease;
-            user-select: none;
-            position: relative;
-        }
-
-        .ranking-item:hover {
-            border-color: var(--primary-color);
-            background: #f5f3ff;
-            transform: translateX(4px);
-        }
-
-        .ranking-item.dragging {
-            opacity: 0.5;
-            cursor: grabbing;
-            background: #f5f3ff;
-            border-style: dashed;
-        }
-
-        .rank-number {
-            width: 28px;
-            height: 28px;
-            background: #eef2ff;
-            color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-right: 1rem;
-            flex-shrink: 0;
-            border: 1px solid #c7d2fe;
-        }
-
-        .drag-handle {
-            margin-left: auto;
-            color: #9ca3af;
-            display: flex;
-            align-items: center;
-        }
-
-        .drag-handle svg {
-            width: 1.25rem;
-            height: 1.25rem;
         }
 
         #thank-you-message {
@@ -288,16 +226,17 @@
             font-size: 2rem;
             margin: 0 auto 1.5rem;
         }
-
     </style>
 </head>
 
 <body>
     <main class="questionnaire-container">
         <div id="questionnaire-form-wrapper">
-            <header style="margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+            <header
+                style="margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
                 <h1 style="margin: 0; text-align: left; white-space: nowrap;">Fast geschafft!</h1>
-                <p style="margin: 0; text-align: center; flex: 1; color: #4b5563; font-size: 1rem;">Bitte teile uns noch einige abschließende Details mit.</p>
+                <p style="margin: 0; text-align: center; flex: 1; color: #4b5563; font-size: 1rem;">Bitte teile uns noch
+                    einige abschließende Details mit.</p>
                 <div style="flex-shrink: 0;">
                     <button id="opt-out-button" class="opt-out-button">Studie abbrechen</button>
                 </div>
@@ -336,8 +275,7 @@
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="source-verification-freq">Wie häufig klickst du im Alltag bei KI-Tools aktiv auf
-                            die angegebenen Quellenangaben, um die Aussagen der KI zu überprüfen?</label>
+                        <label for="source-verification-freq">Wie oft prüfst du Quellen bei KI-Tools im Alltag?</label>
                         <select id="source-verification-freq" name="source_verification_freq" required>
                             <option value="" disabled selected>Häufigkeit auswählen</option>
                             <option value="5">Immer</option>
@@ -354,44 +292,25 @@
                         Oberflächen-Bewertung</h3>
 
                     <div class="form-group full-width">
-                        <label>Bitte bewerte, wie kognitiv anspruchsvoll es war, die Aussagen der KI mithilfe der
-                            bereitgestellten Quellen in den folgenden Oberflächen zu überprüfen:</label>
+                        <label>Wie anstrengend war die Quellenprüfung für dich?</label>
 
-                        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Klassische Oberfläche (Klickbare Zahlen/Links am Ende des Textes)</div>
                         <div class="likert-scale">
                             <span class="likert-labels">[1]<br>Sehr gering</span>
                             <div class="likert-options">
-                                <label><input type="radio" name="mental_demand_classic" value="1" required>1</label>
-                                <label><input type="radio" name="mental_demand_classic" value="2">2</label>
-                                <label><input type="radio" name="mental_demand_classic" value="3">3</label>
-                                <label><input type="radio" name="mental_demand_classic" value="4">4</label>
-                                <label><input type="radio" name="mental_demand_classic" value="5">5</label>
-                            </div>
-                            <span class="likert-labels">[5]<br>Sehr hoch</span>
-                        </div>
-
-                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Side-by-side-Ansicht (automatische Quellenanzeige)</div>
-                        <div class="likert-scale">
-                            <span class="likert-labels">[1]<br>Sehr gering</span>
-                            <div class="likert-options">
-                                <label><input type="radio" name="mental_demand_low_friction" value="1"
-                                        required>1</label>
-                                <label><input type="radio" name="mental_demand_low_friction" value="2">2</label>
-                                <label><input type="radio" name="mental_demand_low_friction" value="3">3</label>
-                                <label><input type="radio" name="mental_demand_low_friction" value="4">4</label>
-                                <label><input type="radio" name="mental_demand_low_friction" value="5">5</label>
+                                <label><input type="radio" name="mental_demand" value="1" required>1</label>
+                                <label><input type="radio" name="mental_demand" value="2">2</label>
+                                <label><input type="radio" name="mental_demand" value="3">3</label>
+                                <label><input type="radio" name="mental_demand" value="4">4</label>
+                                <label><input type="radio" name="mental_demand" value="5">5</label>
                             </div>
                             <span class="likert-labels">[5]<br>Sehr hoch</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Die Notwendigkeit, in der klassischen Oberfläche auf einen Link zu klicken und in ein
-                            anderes Fenster zu wechseln, hat meinen Arbeitsfluss gestört.</label>
+                        <label>Die Quellenprüfung hat meinen Arbeitsfluss gestört.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
+                            <span class="likert-labels">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="workflow_disruption" value="1" required>1</label>
                                 <label><input type="radio" name="workflow_disruption" value="2">2</label>
@@ -399,15 +318,14 @@
                                 <label><input type="radio" name="workflow_disruption" value="4">4</label>
                                 <label><input type="radio" name="workflow_disruption" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
+                            <span class="likert-labels">Stimme voll zu</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Ich habe mentale oder visuelle Ermüdung erlebt, als ich versuchte, die Antworten
-                            der KI anhand der Quelldokumente zu überprüfen.</label>
+                        <label>Die Quellenprüfung war ermüdend.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
+                            <span class="likert-labels">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="fatigue" value="1" required>1</label>
                                 <label><input type="radio" name="fatigue" value="2">2</label>
@@ -415,7 +333,7 @@
                                 <label><input type="radio" name="fatigue" value="4">4</label>
                                 <label><input type="radio" name="fatigue" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
+                            <span class="likert-labels">Stimme voll zu</span>
                         </div>
                     </div>
                 </div>
@@ -426,73 +344,27 @@
                         Zuversicht</h3>
 
                     <div class="form-group full-width">
-                        <label>Bitte bewerte dein allgemeines Vertrauensniveau in die sachliche Richtigkeit der
-                            KI-Antworten für jede Oberfläche:</label>
+                        <label>Wie sehr vertraust du den KI-Antworten?</label>
 
-                        <div style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Klassische Oberfläche</div>
                         <div class="likert-scale">
                             <span class="likert-labels">Sehr gering</span>
                             <div class="likert-options">
-                                <label><input type="radio" name="trust_classic" value="1" required>1</label>
-                                <label><input type="radio" name="trust_classic" value="2">2</label>
-                                <label><input type="radio" name="trust_classic" value="3">3</label>
-                                <label><input type="radio" name="trust_classic" value="4">4</label>
-                                <label><input type="radio" name="trust_classic" value="5">5</label>
-                            </div>
-                            <span class="likert-labels">Sehr hoch</span>
-                        </div>
-
-                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Keine-Referenz-Oberfläche (nur KI-Text, keine Links)</div>
-                        <div class="likert-scale">
-                            <span class="likert-labels">Sehr gering</span>
-                            <div class="likert-options">
-                                <label><input type="radio" name="trust_no_ref" value="1" required>1</label>
-                                <label><input type="radio" name="trust_no_ref" value="2">2</label>
-                                <label><input type="radio" name="trust_no_ref" value="3">3</label>
-                                <label><input type="radio" name="trust_no_ref" value="4">4</label>
-                                <label><input type="radio" name="trust_no_ref" value="5">5</label>
-                            </div>
-                            <span class="likert-labels">Sehr hoch</span>
-                        </div>
-
-                        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 500;">
-                            Side-by-side-view</div>
-                        <div class="likert-scale">
-                            <span class="likert-labels">Sehr gering</span>
-                            <div class="likert-options">
-                                <label><input type="radio" name="trust_low_friction" value="1" required>1</label>
-                                <label><input type="radio" name="trust_low_friction" value="2">2</label>
-                                <label><input type="radio" name="trust_low_friction" value="3">3</label>
-                                <label><input type="radio" name="trust_low_friction" value="4">4</label>
-                                <label><input type="radio" name="trust_low_friction" value="5">5</label>
+                                <label><input type="radio" name="trust" value="1" required>1</label>
+                                <label><input type="radio" name="trust" value="2">2</label>
+                                <label><input type="radio" name="trust" value="3">3</label>
+                                <label><input type="radio" name="trust" value="4">4</label>
+                                <label><input type="radio" name="trust" value="5">5</label>
                             </div>
                             <span class="likert-labels">Sehr hoch</span>
                         </div>
                     </div>
 
-                    <div class="form-group full-width">
-                        <label>Allein die visuelle Präsenz von Zitationslinks hat mich zuversichtlicher in Bezug auf
-                            die KI-Antwort gemacht, noch bevor ich das Quelldokument überprüft habe.</label>
-                        <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
-                            <div class="likert-options">
-                                <label><input type="radio" name="citation_effect" value="1" required>1</label>
-                                <label><input type="radio" name="citation_effect" value="2">2</label>
-                                <label><input type="radio" name="citation_effect" value="3">3</label>
-                                <label><input type="radio" name="citation_effect" value="4">4</label>
-                                <label><input type="radio" name="citation_effect" value="5">5</label>
-                            </div>
-                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
-                        </div>
-                    </div>
+
 
                     <div class="form-group full-width">
-                        <label>Wenn die Antwort der KI professionell und gut formuliert klang, hatte ich weniger
-                            das Bedürfnis, sie mit dem Quellmaterial zu vergleichen.</label>
+                        <label>Überzeugende Formulierungen habe ich seltener geprüft.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels" style="width: 100px;">Stimme gar nicht zu</span>
+                            <span class="likert-labels">Stimme gar nicht zu</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="confidence_override" value="1" required>1</label>
                                 <label><input type="radio" name="confidence_override" value="2">2</label>
@@ -500,82 +372,20 @@
                                 <label><input type="radio" name="confidence_override" value="4">4</label>
                                 <label><input type="radio" name="confidence_override" value="5">5</label>
                             </div>
-                            <span class="likert-labels" style="width: 100px;">Stimme voll zu</span>
+                            <span class="likert-labels">Stimme voll zu</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
-                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
-                        Präferenzen & Gesamterfahrung</h3>
-
                     <div class="form-group full-width">
-                        <label>Basierend auf deinen heutigen Erfahrungen, bitte ordne die drei Oberflächen von
-                            1 (Bevorzugt) bis 3 (Am wenigsten bevorzugt) für alltägliche Arbeitsaufgaben.
-                            <strong>(Ziehen zum Sortieren)</strong></label>
-                        <div id="ranking-container" class="ranking-list">
-                            <div class="ranking-item" draggable="true" data-id="classic">
-                                <div class="rank-number">1</div>
-                                <span style="font-weight: 600; font-size: 0.95rem;">Klassische Oberfläche (Links am
-                                    Ende)</span>
-                                <div class="drag-handle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 10h16M4 14h16" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="ranking-item" draggable="true" data-id="no_ref">
-                                <div class="rank-number">2</div>
-                                <span style="font-weight: 600; font-size: 0.95rem;">Keine-Referenz-Oberfläche (nur
-                                    KI-Text)</span>
-                                <div class="drag-handle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 10h16M4 14h16" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="ranking-item" draggable="true" data-id="low_friction">
-                                <div class="rank-number">3</div>
-                                <span style="font-weight: 600; font-size: 0.95rem;">Side-by-side-Ansicht (Automatische
-                                    Anzeige)</span>
-                                <div class="drag-handle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 10h16M4 14h16" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label>Bei welcher Oberfläche war es am einfachsten, Informationen zu vergleichen und
-                            potenzielle Fehler zu erkennen?</label>
-                        <select name="error_detection_ease" required>
-                            <option value="" disabled selected>Option auswählen</option>
-                            <option value="classic">Klassische Oberfläche</option>
-                            <option value="no_ref">Keine-Referenz-Oberfläche</option>
-                            <option value="low_friction">Side-by-side-Ansicht</option>
-                            <option value="equal">Alle waren gleich schwierig/einfach</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="preference_reasoning">Warum hast du deine bevorzugte Oberfläche am besten
-                            bewertet?</label>
-                        <textarea id="preference_reasoning" name="preference_reasoning" rows="3" required
-                            placeholder="Bitte begründe deine Entscheidung..."></textarea>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="perceived_purpose">Was denkst du, war der primäre Zweck dieser Studie?</label>
+                        <label for="perceived_purpose">Was war deiner Meinung nach das Ziel der Studie?</label>
                         <textarea id="perceived_purpose" name="perceived_purpose" rows="2" required
                             placeholder="Deine Gedanken..."></textarea>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="suspicion_check">Hast du bei den verschiedenen Aufgaben Muster oder etwas
-                            Ungewöhnliches bezüglich der Genauigkeit der KI-Antworten bemerkt? Falls ja, beschreibe es
-                            bitte.</label>
+                        <label for="suspicion_check">Hast du Fehler oder Muster in den KI-Antworten bemerkt?</label>
                         <textarea id="suspicion_check" name="suspicion_check" rows="3" required
                             placeholder="Deine Beobachtungen..."></textarea>
                     </div>
@@ -596,54 +406,79 @@
                     <p style="text-align: center; font-size: 0.75rem; color: #9ca3af; margin-top: 1rem;">
                         Deine Daten werden für wissenschaftliche Zwecke anonym gespeichert.
                     </p>
-                </div>        <div id="debriefing-section" style="display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s ease-out;">
-            <header style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; border-bottom: none; padding: 0;">
-                <h1 style="background: linear-gradient(to right, var(--primary-color), #7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; margin: 0;">Studienaufklärung (Debriefing)</h1>
-                <p style="color: #4b5563; font-size: 1.125rem; font-weight: 500;">Vielen Dank für deine Teilnahme! Bevor wir die Studie abschließen, möchten wir dich über den wissenschaftlichen Hintergrund informieren.</p>
-            </header>
-            
-            <div class="debriefing-content" style="line-height: 1.7; color: #374151; font-size: 1.05rem;">
-                <p style="margin-bottom: 1.5rem;">
-                    In diesem Experiment wurde untersucht, wie unterschiedliche Benutzeroberflächen die menschliche Fähigkeit zur Überprüfung von <strong>KI-generierten Informationen (Halluzinationen)</strong> beeinflussen. 
-                    Dazu wurden in einigen Aufgaben gezielt falsche Informationen in die Antworten des Chatbots eingebaut.
-                </p>
-                
-                <p style="margin-bottom: 1.5rem;">
-                    Ein besonderer Fokus der Untersuchung lag auf dem Aspekt des <strong>Vertrauensaufbaus</strong>: Wir haben getestet, ob ein anfänglich hohes Vertrauen (durch korrekte Antworten zu Beginn der Interaktion) deine spätere Wachsamkeit gegenüber Fehlern in anderen Aufgaben verändert.
-                </p>
+                </div>
+                <div id="debriefing-section"
+                    style="display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s ease-out;">
+                    <header
+                        style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; border-bottom: none; padding: 0;">
+                        <h1
+                            style="background: linear-gradient(to right, var(--primary-color), #7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; margin: 0;">
+                            Studienaufklärung (Debriefing)</h1>
+                        <p style="color: #4b5563; font-size: 1.125rem; font-weight: 500;">Vielen Dank für deine
+                            Teilnahme! Bevor wir die Studie abschließen, möchten wir dich über den wissenschaftlichen
+                            Hintergrund informieren.</p>
+                    </header>
 
-                <div style="background: #fdf2f2; border-left: 4px solid #ef4444; padding: 1.25rem; margin-bottom: 2rem; border-radius: 0 0.75rem 0.75rem 0;">
-                    <p style="color: #991b1b; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">Wichtiger Hinweis zur Methodik:</p>
-                    <p style="color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;">Sämtliche Antworten des Chatbots waren vorab festgeschrieben und folgten einem strengen Skript. Deine eingegebenen Fragen hatten daher keinen Einfluss auf die Korrektheit der Antworten – dies diente der wissenschaftlichen Vergleichbarkeit der Ergebnisse für alle Teilnehmer.</p>
+                    <div class="debriefing-content" style="line-height: 1.7; color: #374151; font-size: 1.05rem;">
+                        <p style="margin-bottom: 1.5rem;">
+                            In diesem Experiment wurde untersucht, wie unterschiedliche Benutzeroberflächen die
+                            menschliche Fähigkeit zur Überprüfung von <strong>KI-generierten Informationen
+                                (Halluzinationen)</strong> beeinflussen.
+                            Dazu wurden in einigen Aufgaben gezielt falsche Informationen in die Antworten des Chatbots
+                            eingebaut.
+                        </p>
+
+                        <p style="margin-bottom: 1.5rem;">
+                            Ein besonderer Fokus der Untersuchung lag auf dem Aspekt des
+                            <strong>Vertrauensaufbaus</strong>: Wir haben getestet, ob ein anfänglich hohes Vertrauen
+                            (durch korrekte Antworten zu Beginn der Interaktion) deine spätere Wachsamkeit gegenüber
+                            Fehlern in anderen Aufgaben verändert.
+                        </p>
+
+                        <div
+                            style="background: #fdf2f2; border-left: 4px solid #ef4444; padding: 1.25rem; margin-bottom: 2rem; border-radius: 0 0.75rem 0.75rem 0;">
+                            <p style="color: #991b1b; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">
+                                Wichtiger Hinweis zur Methodik:</p>
+                            <p style="color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;">
+                                Sämtliche Antworten des Chatbots waren vorab festgeschrieben und folgten einem strengen
+                                Skript. Deine eingegebenen Fragen hatten daher keinen Einfluss auf die Korrektheit der
+                                Antworten – dies diente der wissenschaftlichen Vergleichbarkeit der Ergebnisse für alle
+                                Teilnehmer.</p>
+                        </div>
+
+                        <p
+                            style="margin-bottom: 2rem; font-weight: 700; color: #111827; font-size: 1.1rem; text-align: center;">
+                            Möchtest du deine Daten unter Berücksichtigung dieser Informationen für die Studie
+                            freigeben?
+                        </p>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem;">
+                        <button id="debriefing-confirm-btn" type="button"
+                            style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 1rem; font-weight: 800; font-size: 1.2rem; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3); text-transform: uppercase; letter-spacing: 0.025em;">
+                            Einverstanden (Daten verwenden)
+                        </button>
+
+                        <div style="text-align: center;">
+                            <button id="debriefing-withdraw-btn" type="button"
+                                style="background: transparent; color: #ef4444; font-weight: 600; font-size: 0.95rem; border: 2px solid transparent; text-decoration: underline; cursor: pointer; transition: all 0.2s; padding: 0.5rem;">
+                                Einwilligung widerrufen (Daten löschen)
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <p style="margin-bottom: 2rem; font-weight: 700; color: #111827; font-size: 1.1rem; text-align: center;">
-                    Möchtest du deine Daten unter Berücksichtigung dieser Informationen für die Studie freigeben?
-                </p>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem;">
-                <button id="debriefing-confirm-btn" type="button" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 1rem; font-weight: 800; font-size: 1.2rem; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3); text-transform: uppercase; letter-spacing: 0.025em;">
-                    Einverstanden (Daten verwenden)
-                </button>
-                
-                <div style="text-align: center;">
-                    <button id="debriefing-withdraw-btn" type="button" style="background: transparent; color: #ef4444; font-weight: 600; font-size: 0.95rem; border: 2px solid transparent; text-decoration: underline; cursor: pointer; transition: all 0.2s; padding: 0.5rem;">
-                        Einwilligung widerrufen (Daten löschen)
-                    </button>
+                <div id="thank-you-message">
+                    <div class="success-icon">✓</div>
+                    <h2>Vielen Dank!</h2>
+                    <p>Deine Antworten wurden erfolgreich gespeichert. Vielen Dank für deinen wertvollen Beitrag zu
+                        meiner
+                        Masterarbeit.</p>
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f3f4f6; border-radius: 1rem;">
+                        <p style="font-weight: 600; font-size: 0.875rem;">Du kannst diesen Browser-Tab jetzt schließen.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div id="thank-you-message">
-            <div class="success-icon">✓</div>
-            <h2>Vielen Dank!</h2>
-            <p>Deine Antworten wurden erfolgreich gespeichert. Vielen Dank für deinen wertvollen Beitrag zu meiner
-                Masterarbeit.</p>
-            <div style="margin-top: 2rem; padding: 1.5rem; background: #f3f4f6; border-radius: 1rem;">
-                <p style="font-weight: 600; font-size: 0.875rem;">Du kannst diesen Browser-Tab jetzt schließen.</p>
-            </div>
-        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.js"></script>
@@ -656,48 +491,7 @@
             const formWrapper = document.getElementById('questionnaire-form-wrapper');
             const thankYouMessage = document.getElementById('thank-you-message');
 
-            // Drag and Drop Logic
-            const draggables = document.querySelectorAll('.ranking-item');
-            const container = document.getElementById('ranking-container');
 
-            draggables.forEach(draggable => {
-                draggable.addEventListener('dragstart', () => {
-                    draggable.classList.add('dragging');
-                });
-
-                draggable.addEventListener('dragend', () => {
-                    draggable.classList.remove('dragging');
-                    // Recalculate numbers
-                    document.querySelectorAll('.rank-number').forEach((num, index) => {
-                        num.textContent = index + 1;
-                    });
-                });
-            });
-
-            container.addEventListener('dragover', e => {
-                e.preventDefault();
-                const afterElement = getDragAfterElement(container, e.clientY);
-                const draggable = document.querySelector('.dragging');
-                if (afterElement == null) {
-                    container.appendChild(draggable);
-                } else {
-                    container.insertBefore(draggable, afterElement);
-                }
-            });
-
-            function getDragAfterElement(container, y) {
-                const draggableElements = [...container.querySelectorAll('.ranking-item:not(.dragging)')];
-
-                return draggableElements.reduce((closest, child) => {
-                    const box = child.getBoundingClientRect();
-                    const offset = y - box.top - box.height / 2;
-                    if (offset < 0 && offset > closest.offset) {
-                        return { offset: offset, element: child };
-                    } else {
-                        return closest;
-                    }
-                }, { offset: Number.NEGATIVE_INFINITY }).element;
-            }
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -706,12 +500,6 @@
 
                 const formData = new FormData(form);
                 const rawData = Object.fromEntries(formData.entries());
-
-                // Extract ranking from draggable list
-                const rankings = [...document.querySelectorAll('.ranking-item')];
-                const pref_classic = rankings.findIndex(item => item.dataset.id === 'classic') + 1;
-                const pref_no_ref = rankings.findIndex(item => item.dataset.id === 'no_ref') + 1;
-                const pref_low_friction = rankings.findIndex(item => item.dataset.id === 'low_friction') + 1;
 
                 // Prepare data for Supabase insert into 'questionaire_ans'
                 const sessionUserId = sessionStorage.getItem('app_session_id') || 'unknown';
@@ -722,20 +510,11 @@
                     gender: rawData.gender,
                     ai_frequency: parseInt(rawData.ai_frequency),
                     source_verification_freq: parseInt(rawData.source_verification_freq),
-                    mental_demand_classic: parseInt(rawData.mental_demand_classic),
-                    mental_demand_low_friction: parseInt(rawData.mental_demand_low_friction),
+                    mental_demand: parseInt(rawData.mental_demand),
                     workflow_disruption: parseInt(rawData.workflow_disruption),
                     fatigue: parseInt(rawData.fatigue),
-                    trust_classic: parseInt(rawData.trust_classic),
-                    trust_no_ref: parseInt(rawData.trust_no_ref),
-                    trust_low_friction: parseInt(rawData.trust_low_friction),
-                    citation_effect: parseInt(rawData.citation_effect),
+                    trust: parseInt(rawData.trust),
                     confidence_override: parseInt(rawData.confidence_override),
-                    pref_classic: pref_classic,
-                    pref_no_ref: pref_no_ref,
-                    pref_low_friction: pref_low_friction,
-                    error_detection_ease: rawData.error_detection_ease,
-                    preference_reasoning: rawData.preference_reasoning || "",
                     perceived_purpose: rawData.perceived_purpose || "",
                     suspicion_check: rawData.suspicion_check || "",
                     comment: rawData.comment || ""
