@@ -10,31 +10,36 @@
 
 <body class="landing-page">
 
+    <!-- Mobile Blocker Overlay -->
+    <div id="mobile-overlay">
+        <div class="mobile-overlay-content">
+            <h2>Desktop-PC erforderlich</h2>
+            <p>Aufgrund der umfangreichen Textdokumente ist die Teilnahme an dieser Studie auf dem Smartphone leider
+                nicht möglich. Bitte öffne den Link auf einem Desktop-PC oder Laptop (Vollbild + Querformat).</p>
+        </div>
+    </div>
+
     <div class="landing-wrapper">
 
 
         <main class="landing-main">
             <section class="hero-section">
                 <h1>Willkommen zur Studie:<br>"KI-gestützte Workflows im Operations Management"</h1>
-                <p class="hero-subtitle"
-                    style="margin-top: 0.5rem; font-size: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5;">
-                    Missing - TBD
-                </p>
             </section>
 
             <div class="content-grid" style="align-items: stretch;">
                 <section class="landing-card info-card" style="display: flex; flex-direction: column;">
-                    <h2>Deine Rolle & Das Szenario</h2>
+                    <h2>Ihre Rolle & Das Szenario</h2>
                     <div class="card-body" style="flex: 1;">
-                        <p>Du übernimmst heute die Rolle eines Operations-Managers bei
+                        <p>Sie übernehmen heute die Rolle eines Operations-Managers bei
                             der fiktiven FirmaX.</p>
-                        <p>Deine Aufgabe ist es, <strong>drei offene Anfragen (Tickets)</strong> von Kolleginnen und
+                        <p>Ihre Aufgabe ist es, <strong>drei offene Anfragen (Tickets)</strong> von Kolleginnen und
                             Kollegen aus anderen Abteilungen zu bearbeiten.</p>
-                        <p>Um dir die Arbeit zu erleichtern, hast du Zugriff auf unseren neuen FirmaX KI-Chatbot
-                            "ClarifAI". Du
-                            kannst dem Chatbot Fragen zu den internen Richtlinien stellen, um die Tickets schneller
+                        <p>Um Ihnen die Arbeit zu erleichtern, haben Sie Zugriff auf unseren neuen FirmaX KI-Chatbot
+                            "ClarifAI". Sie
+                            können dem Chatbot Fragen zu den internen Richtlinien stellen, um die Tickets schneller
                             beantworten zu können.</p>
-                        <p>Wie in jedem digitalen Arbeitsbereich hast du zusätzlich Zugriff auf die originalen
+                        <p>Wie in jedem digitalen Arbeitsbereich haben Sie zusätzlich Zugriff auf die originalen
                             Firmen-Dokumente.</p>
 
                         <div class="privacy-note"
@@ -45,7 +50,7 @@
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
                             <span><strong>Datenschutzhinweis:</strong> Alle hier erhobenen Daten werden streng
-                                vertraulich und vollständig anonymisiert verarbeitet. Eine Rückverfolgung zu deiner
+                                vertraulich und vollständig anonymisiert verarbeitet. Eine Rückverfolgung zu Ihrer
                                 Person ist technisch ausgeschlossen. Die Ergebnisse werden ausschließlich für
                                 wissenschaftliche Zwecke im Rahmen dieser Masterarbeit verwendet.</span>
                         </div>
@@ -57,26 +62,26 @@
                     <div class="card-body"
                         style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
-                            <p>Für jedes der drei Tickets gehst du wie folgt vor:</p>
+                            <p>Für jedes der drei Tickets gehen Sie wie folgt vor:</p>
                             <ul style="list-style-type: none; padding-left: 0; margin-top: 1rem;">
                                 <li style="margin-bottom: 1rem;">
                                     <strong
                                         style="color: var(--primary-color); display: block; margin-bottom: 0.15rem; font-size: 1.05rem;">1.
                                         Ticket lesen</strong>
-                                    Lies dir die Anfrage deines Kollegen kurz durch.
+                                    Lesen Sie sich die Anfrage Ihres Kollegen kurz durch.
                                 </li>
                                 <li style="margin-bottom: 1rem;">
                                     <strong
                                         style="color: var(--primary-color); display: block; margin-bottom: 0.15rem; font-size: 1.05rem;">2.
                                         KI nutzen</strong>
-                                    Formuliere einen kurzen Prompt an den KI-Chatbot, um die nötige Information für
-                                    deine Antwort zu recherchieren.
+                                    Formulieren Sie einen kurzen Prompt an den KI-Chatbot, um die nötige Information für
+                                    Ihre Antwort zu recherchieren.
                                 </li>
                                 <li style="margin-bottom: 1rem;">
                                     <strong
                                         style="color: var(--primary-color); display: block; margin-bottom: 0.15rem; font-size: 1.05rem;">3.
                                         Entscheidung treffen</strong>
-                                    Schließe das Ticket ab, indem du dem Kollegen die korrekte Antwort auswählst.
+                                    Schließen Sie das Ticket ab, indem Sie dem Kollegen die korrekte Antwort auswählen.
                                 </li>
                             </ul>
                         </div>
@@ -122,8 +127,12 @@
                 // Map interface filename to a selection
                 const interfaces = ['InterfaceA.html', 'interfaceB.html', 'interfaceC.html'];
                 const selectedInterface = interfaces[Math.floor(Math.random() * interfaces.length)];
+                
+                // Randomly select a sequence for the Latin Square design (1, 2, or 3)
+                const taskSequence = Math.floor(Math.random() * 3) + 1;
 
                 sessionStorage.setItem('app_interface', selectedInterface);
+                sessionStorage.setItem('task_sequence', taskSequence.toString());
                 sessionStorage.setItem('app_step', '1');
 
                 window.location.href = selectedInterface;
