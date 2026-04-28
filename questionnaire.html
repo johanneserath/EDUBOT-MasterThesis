@@ -98,6 +98,16 @@
             margin-top: 0.5rem;
         }
 
+        .radio-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-row .radio-option {
+            flex: 1;
+        }
+
         .radio-option {
             display: flex;
             align-items: center;
@@ -230,13 +240,20 @@
 </head>
 
 <body>
+    <!-- Mobile Blocker Overlay -->
+    <div id="mobile-overlay">
+        <div class="mobile-overlay-content">
+            <h2>Desktop-PC erforderlich</h2>
+            <p>Aufgrund der umfangreichen Textdokumente ist die Teilnahme an dieser Studie auf dem Smartphone leider
+                nicht möglich. Bitte öffne den Link auf einem Desktop-PC, Laptop oder Tablet (Querformat).</p>
+        </div>
+    </div>
+
     <main class="questionnaire-container">
         <div id="questionnaire-form-wrapper">
             <header
                 style="margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
                 <h1 style="margin: 0; text-align: left; white-space: nowrap;">Fast geschafft!</h1>
-                <p style="margin: 0; text-align: center; flex: 1; color: #4b5563; font-size: 1rem;">Bitte teile uns noch
-                    einige abschließende Details mit.</p>
                 <div style="flex-shrink: 0;">
                     <button id="opt-out-button" class="opt-out-button">Studie abbrechen</button>
                 </div>
@@ -251,7 +268,7 @@
 
                     <div class="form-group full-width">
                         <label>Geschlecht</label>
-                        <div class="radio-grid">
+                        <div class="radio-row">
                             <label class="radio-option"><input type="radio" name="gender" value="m" required>
                                 Männlich</label>
                             <label class="radio-option"><input type="radio" name="gender" value="f"> Weiblich</label>
@@ -263,132 +280,201 @@
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="ai-frequency">Wie häufig nutzt du KI-Chatbots?</label>
-                        <select id="ai-frequency" name="ai_frequency" required>
-                            <option value="" disabled selected>Häufigkeit auswählen</option>
-                            <option value="1">Noch nie genutzt</option>
-                            <option value="2">Selten (monatlich oder weniger)</option>
-                            <option value="3">Manchmal (alle zwei Wochen)</option>
-                            <option value="4">Häufig (wöchentlich)</option>
-                            <option value="5">Täglich</option>
+                        <label for="education">Höchster Bildungsabschluss</label>
+                        <select id="education" name="education_level" required>
+                            <option value="" disabled selected>Bitte auswählen</option>
+                            <option value="Pflichtschule">Pflichtschule</option>
+                            <option value="Lehre/Berufsschule">Lehre / Berufsschule</option>
+                            <option value="Matura">Gymnasium / BHS (Matura)</option>
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Master">Master / Diplom</option>
+                            <option value="Promotion">Promotion (PhD)</option>
                         </select>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="source-verification-freq">Wie oft prüfst du Quellen bei KI-Tools im Alltag?</label>
-                        <select id="source-verification-freq" name="source_verification_freq" required>
+                        <label for="ai-frequency">Wie häufig nutzen Sie derzeit generative KI-Tools (z. B. ChatGPT,
+                            Perplexity, Claude, Gemini)?</label>
+                        <select id="ai-frequency" name="ai_frequency" required>
                             <option value="" disabled selected>Häufigkeit auswählen</option>
-                            <option value="5">Immer</option>
-                            <option value="4">Oft</option>
-                            <option value="3">Manchmal</option>
+                            <option value="4">Täglich</option>
+                            <option value="3">Wöchentlich</option>
                             <option value="2">Selten</option>
                             <option value="1">Nie</option>
                         </select>
                     </div>
+
+
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
-                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
-                        Oberflächen-Bewertung</h3>
 
                     <div class="form-group full-width">
-                        <label>Wie anstrengend war die Quellenprüfung für dich?</label>
+                        <label>Wie geistig anstrengend war es für Sie, die gestellten Aufgaben mit diesem System zu
+                            lösen?</label>
 
                         <div class="likert-scale">
-                            <span class="likert-labels">[1]<br>Sehr gering</span>
+                            <span class="likert-labels">[1]<br>nicht anstrengend</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="mental_demand" value="1" required>1</label>
                                 <label><input type="radio" name="mental_demand" value="2">2</label>
                                 <label><input type="radio" name="mental_demand" value="3">3</label>
                                 <label><input type="radio" name="mental_demand" value="4">4</label>
                                 <label><input type="radio" name="mental_demand" value="5">5</label>
+                                <label><input type="radio" name="mental_demand" value="6">6</label>
                             </div>
-                            <span class="likert-labels">[5]<br>Sehr hoch</span>
+                            <span class="likert-labels">[6]<br>sehr anstrengend</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Die Quellenprüfung hat meinen Arbeitsfluss gestört.</label>
+                        <label>Um sicherzustellen, dass Sie diese Umfrage aufmerksam lesen, wählen Sie bei dieser Frage bitte die '6' aus.</label>
                         <div class="likert-scale">
-                            <span class="likert-labels">Stimme gar nicht zu</span>
+                            <span class="likert-labels">[1]<br>nicht anstrengend</span>
                             <div class="likert-options">
-                                <label><input type="radio" name="workflow_disruption" value="1" required>1</label>
-                                <label><input type="radio" name="workflow_disruption" value="2">2</label>
-                                <label><input type="radio" name="workflow_disruption" value="3">3</label>
-                                <label><input type="radio" name="workflow_disruption" value="4">4</label>
-                                <label><input type="radio" name="workflow_disruption" value="5">5</label>
+                                <label><input type="radio" name="attention_check" value="1" required>1</label>
+                                <label><input type="radio" name="attention_check" value="2">2</label>
+                                <label><input type="radio" name="attention_check" value="3">3</label>
+                                <label><input type="radio" name="attention_check" value="4">4</label>
+                                <label><input type="radio" name="attention_check" value="5">5</label>
+                                <label><input type="radio" name="attention_check" value="6">6</label>
                             </div>
-                            <span class="likert-labels">Stimme voll zu</span>
+                            <span class="likert-labels">[6]<br>sehr anstrengend</span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Die Quellenprüfung war ermüdend.</label>
-                        <div class="likert-scale">
-                            <span class="likert-labels">Stimme gar nicht zu</span>
-                            <div class="likert-options">
-                                <label><input type="radio" name="fatigue" value="1" required>1</label>
-                                <label><input type="radio" name="fatigue" value="2">2</label>
-                                <label><input type="radio" name="fatigue" value="3">3</label>
-                                <label><input type="radio" name="fatigue" value="4">4</label>
-                                <label><input type="radio" name="fatigue" value="5">5</label>
-                            </div>
-                            <span class="likert-labels">Stimme voll zu</span>
+                        <label>Haben Sie die Originalquellen während der Aufgaben verwendet, um die Antworten zu überprüfen?</label>
+                        <div class="radio-row">
+                            <label class="radio-option"><input type="radio" name="sources_used" value="1" required onchange="toggleSourceQuestions('1')"> Ja</label>
+                            <label class="radio-option"><input type="radio" name="sources_used" value="0" onchange="toggleSourceQuestions('0')"> Nein</label>
                         </div>
                     </div>
+
+                    <div class="form-group full-width" id="source_access_container" style="display: none; margin-top: 1rem;">
+                        <label>Wie einfach oder schwer fanden Sie den Zugriff auf die Originalquellen?</label>
+                        <div class="likert-scale">
+                            <span class="likert-labels">[1]<br>sehr schwer</span>
+                            <div class="likert-options">
+                                <label><input type="radio" name="source_access_difficulty" value="1">1</label>
+                                <label><input type="radio" name="source_access_difficulty" value="2">2</label>
+                                <label><input type="radio" name="source_access_difficulty" value="3">3</label>
+                                <label><input type="radio" name="source_access_difficulty" value="4">4</label>
+                                <label><input type="radio" name="source_access_difficulty" value="5">5</label>
+                                <label><input type="radio" name="source_access_difficulty" value="6">6</label>
+                            </div>
+                            <span class="likert-labels">[6]<br>sehr einfach</span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group full-width" id="no_verification_container" style="display: none; margin-top: 1rem;">
+                        <label for="no_verification_reason">Wenn Sie die Quellen während der Aufgaben nicht oder nur
+                            selten überprüft haben, was war der Hauptgrund dafür?</label>
+                        <select id="no_verification_reason" name="no_verification_reason">
+                            <option value="" disabled selected>Bitte auswählen</option>
+                            <option value="Vertrauen in die KI">Vertrauen in die KI</option>
+                            <option value="Quellenprüfung war zu aufwendig/kompliziert">Quellenprüfung war zu
+                                aufwendig/kompliziert</option>
+                            <option value="Zeitmangel">Zeitmangel</option>
+                            <option value="Wusste nicht wie">Wusste nicht wie</option>
+                            <option value="Sonstiges">Sonstiges</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
-                    <h3 style="grid-column: span 2; font-size: 1.125rem; color: #1f2937; margin-bottom: 0.5rem;">
-                        Vertrauen &
-                        Zuversicht</h3>
 
                     <div class="form-group full-width">
-                        <label>Wie sehr vertraust du den KI-Antworten?</label>
+                        <label>Wie sehr haben Sie der Richtigkeit der Antworten des Chatbots während der Aufgaben
+                            vertraut?</label>
 
                         <div class="likert-scale">
-                            <span class="likert-labels">Sehr gering</span>
+                            <span class="likert-labels">[1]<br>überhaupt nicht</span>
                             <div class="likert-options">
                                 <label><input type="radio" name="trust" value="1" required>1</label>
                                 <label><input type="radio" name="trust" value="2">2</label>
                                 <label><input type="radio" name="trust" value="3">3</label>
                                 <label><input type="radio" name="trust" value="4">4</label>
                                 <label><input type="radio" name="trust" value="5">5</label>
+                                <label><input type="radio" name="trust" value="6">6</label>
                             </div>
-                            <span class="likert-labels">Sehr hoch</span>
+                            <span class="likert-labels">[6]<br>voll und ganz</span>
                         </div>
                     </div>
 
 
 
-                    <div class="form-group full-width">
-                        <label>Überzeugende Formulierungen habe ich seltener geprüft.</label>
-                        <div class="likert-scale">
-                            <span class="likert-labels">Stimme gar nicht zu</span>
-                            <div class="likert-options">
-                                <label><input type="radio" name="confidence_override" value="1" required>1</label>
-                                <label><input type="radio" name="confidence_override" value="2">2</label>
-                                <label><input type="radio" name="confidence_override" value="3">3</label>
-                                <label><input type="radio" name="confidence_override" value="4">4</label>
-                                <label><input type="radio" name="confidence_override" value="5">5</label>
-                            </div>
-                            <span class="likert-labels">Stimme voll zu</span>
-                        </div>
-                    </div>
+
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
                     <div class="form-group full-width">
-                        <label for="perceived_purpose">Was war deiner Meinung nach das Ziel der Studie?</label>
+                        <label for="perceived_purpose">Was war Ihrer Meinung nach das Ziel der Studie?</label>
                         <textarea id="perceived_purpose" name="perceived_purpose" rows="2" required
-                            placeholder="Deine Gedanken..."></textarea>
+                            placeholder="Ihre Gedanken..."></textarea>
                     </div>
 
+
                     <div class="form-group full-width">
-                        <label for="suspicion_check">Hast du Fehler oder Muster in den KI-Antworten bemerkt?</label>
-                        <textarea id="suspicion_check" name="suspicion_check" rows="3" required
-                            placeholder="Deine Beobachtungen..."></textarea>
+                        <label>Sind Ihnen bei den Antworten des Chatbots inhaltliche Fehler oder Ungenauigkeiten
+                            aufgefallen?</label>
+                        <div class="radio-row">
+                            <label class="radio-option"><input type="radio" name="hallucination_noticed" value="1"
+                                    required onchange="toggleHallucinationDetails(true)"> Ja</label>
+                            <label class="radio-option"><input type="radio" name="hallucination_noticed" value="0"
+                                    onchange="toggleHallucinationDetails(false)"> Nein</label>
+                            <label class="radio-option"><input type="radio" name="hallucination_noticed"
+                                    value="2" onchange="toggleHallucinationDetails(false)"> Bin mir nicht sicher</label>
+                        </div>
                     </div>
+
+                    <div class="form-group full-width" id="hallucination_details_container"
+                        style="display: none; margin-top: 1rem;">
+                        <label for="hallucination_details">Bitte kurz beschreiben, welcher Fehler Ihnen aufgefallen
+                            ist:</label>
+                        <textarea id="hallucination_details" name="hallucination_details" rows="2"
+                            placeholder="Ihre Beschreibung..."></textarea>
+                    </div>
+
+                    <script>
+                        function toggleSourceQuestions(usedSources) {
+                            const accessContainer = document.getElementById('source_access_container');
+                            const accessInputs = accessContainer.querySelectorAll('input[type="radio"]');
+                            
+                            const reasonContainer = document.getElementById('no_verification_container');
+                            const reasonSelect = document.getElementById('no_verification_reason');
+                            
+                            if (usedSources === '1') {
+                                accessContainer.style.display = 'block';
+                                accessInputs.forEach(input => input.required = true);
+                                
+                                reasonContainer.style.display = 'none';
+                                reasonSelect.required = false;
+                                reasonSelect.value = '';
+                            } else if (usedSources === '0') {
+                                accessContainer.style.display = 'none';
+                                accessInputs.forEach(input => { input.required = false; input.checked = false; });
+                                
+                                reasonContainer.style.display = 'block';
+                                reasonSelect.required = true;
+                            }
+                        }
+
+                        function toggleHallucinationDetails(show) {
+                            const container = document.getElementById('hallucination_details_container');
+                            const textarea = document.getElementById('hallucination_details');
+                            if (show) {
+                                container.style.display = 'block';
+                                textarea.required = true;
+                            } else {
+                                container.style.display = 'none';
+                                textarea.required = false;
+                                textarea.value = '';
+                            }
+                        }
+                    </script>
                 </div>
 
                 <div class="form-section" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;">
@@ -397,88 +483,93 @@
                     <div class="form-group full-width">
                         <label for="comment">Weiteres Feedback? (Optional)</label>
                         <textarea id="comment" name="comment" rows="3"
-                            placeholder="Erzähl uns von deiner Erfahrung..."></textarea>
+                            placeholder="Erzählen Sie uns von Ihrer Erfahrung..."></textarea>
                     </div>
                 </div>
 
                 <div style="display: flex; flex-direction: column;">
                     <button type="submit" id="submit-btn">Studie abschließen</button>
                     <p style="text-align: center; font-size: 0.75rem; color: #9ca3af; margin-top: 1rem;">
-                        Deine Daten werden für wissenschaftliche Zwecke anonym gespeichert.
+                        Ihre Daten werden für wissenschaftliche Zwecke anonym gespeichert.
                     </p>
                 </div>
-                <div id="debriefing-section"
-                    style="display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s ease-out;">
-                    <header
-                        style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; border-bottom: none; padding: 0;">
-                        <h1
-                            style="background: linear-gradient(to right, var(--primary-color), #7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; margin: 0;">
-                            Studienaufklärung (Debriefing)</h1>
-                        <p style="color: #4b5563; font-size: 1.125rem; font-weight: 500;">Vielen Dank für deine
-                            Teilnahme! Bevor wir die Studie abschließen, möchten wir dich über den wissenschaftlichen
-                            Hintergrund informieren.</p>
-                    </header>
+            </form>
+        </div><!-- END #questionnaire-form-wrapper -->
 
-                    <div class="debriefing-content" style="line-height: 1.7; color: #374151; font-size: 1.05rem;">
-                        <p style="margin-bottom: 1.5rem;">
-                            In diesem Experiment wurde untersucht, wie unterschiedliche Benutzeroberflächen die
-                            menschliche Fähigkeit zur Überprüfung von <strong>KI-generierten Informationen
-                                (Halluzinationen)</strong> beeinflussen.
-                            Dazu wurden in einigen Aufgaben gezielt falsche Informationen in die Antworten des Chatbots
-                            eingebaut.
-                        </p>
+        <!-- Debriefing: shown AFTER form submit, OUTSIDE the form wrapper -->
+        <div id="debriefing-section"
+            style="display: none; max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s ease-out;">
+            <header
+                style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; border-bottom: none; padding: 0;">
+                <h1
+                    style="background: linear-gradient(to right, var(--primary-color), #7c3aed); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; margin: 0;">
+                    Studienaufklärung (Debriefing)</h1>
+                <p style="color: #4b5563; font-size: 1.125rem; font-weight: 500;">Vielen Dank für Ihre
+                    Teilnahme! Bevor wir die Studie abschließen, möchten wir Sie über den wissenschaftlichen
+                    Hintergrund informieren.</p>
+            </header>
 
-                        <p style="margin-bottom: 1.5rem;">
-                            Ein besonderer Fokus der Untersuchung lag auf dem Aspekt des
-                            <strong>Vertrauensaufbaus</strong>: Wir haben getestet, ob ein anfänglich hohes Vertrauen
-                            (durch korrekte Antworten zu Beginn der Interaktion) deine spätere Wachsamkeit gegenüber
-                            Fehlern in anderen Aufgaben verändert.
-                        </p>
+            <div class="debriefing-content" style="line-height: 1.7; color: #374151; font-size: 1.05rem;">
+                <p style="margin-bottom: 1.5rem;">
+                    In diesem Experiment wurde untersucht, wie unterschiedliche Benutzeroberflächen die
+                    menschliche Fähigkeit zur Überprüfung von <strong>KI-generierten Informationen
+                        (Halluzinationen)</strong> beeinflussen.
+                    Dazu wurden in einigen Aufgaben gezielt falsche Informationen in die Antworten des Chatbots
+                    eingebaut.
+                </p>
 
-                        <div
-                            style="background: #fdf2f2; border-left: 4px solid #ef4444; padding: 1.25rem; margin-bottom: 2rem; border-radius: 0 0.75rem 0.75rem 0;">
-                            <p style="color: #991b1b; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">
-                                Wichtiger Hinweis zur Methodik:</p>
-                            <p style="color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;">
-                                Sämtliche Antworten des Chatbots waren vorab festgeschrieben und folgten einem strengen
-                                Skript. Deine eingegebenen Fragen hatten daher keinen Einfluss auf die Korrektheit der
-                                Antworten – dies diente der wissenschaftlichen Vergleichbarkeit der Ergebnisse für alle
-                                Teilnehmer.</p>
-                        </div>
+                <p style="margin-bottom: 1.5rem;">
+                    Ein besonderer Fokus der Untersuchung lag auf dem Aspekt des
+                    <strong>Vertrauensaufbaus</strong>: Wir haben getestet, ob ein anfänglich hohes Vertrauen
+                    (durch korrekte Antworten zu Beginn der Interaktion) Ihre spätere Wachsamkeit gegenüber
+                    Fehlern in anderen Aufgaben verändert.
+                </p>
 
-                        <p
-                            style="margin-bottom: 2rem; font-weight: 700; color: #111827; font-size: 1.1rem; text-align: center;">
-                            Möchtest du deine Daten unter Berücksichtigung dieser Informationen für die Studie
-                            freigeben?
-                        </p>
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem;">
-                        <button id="debriefing-confirm-btn" type="button"
-                            style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 1rem; font-weight: 800; font-size: 1.2rem; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3); text-transform: uppercase; letter-spacing: 0.025em;">
-                            Einverstanden (Daten verwenden)
-                        </button>
-
-                        <div style="text-align: center;">
-                            <button id="debriefing-withdraw-btn" type="button"
-                                style="background: transparent; color: #ef4444; font-weight: 600; font-size: 0.95rem; border: 2px solid transparent; text-decoration: underline; cursor: pointer; transition: all 0.2s; padding: 0.5rem;">
-                                Einwilligung widerrufen (Daten löschen)
-                            </button>
-                        </div>
-                    </div>
+                <div
+                    style="background: #fdf2f2; border-left: 4px solid #ef4444; padding: 1.25rem; margin-bottom: 2rem; border-radius: 0 0.75rem 0.75rem 0;">
+                    <p style="color: #991b1b; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">
+                        Wichtiger Hinweis zur Methodik:</p>
+                    <p style="color: #7f1d1d; font-size: 0.95rem; line-height: 1.5; font-style: italic;">
+                        Sämtliche Antworten des Chatbots waren vorab festgeschrieben und folgten einem strengen
+                        Skript. Ihre eingegebenen Fragen hatten daher keinen Einfluss auf die Korrektheit der
+                        Antworten – dies diente der wissenschaftlichen Vergleichbarkeit der Ergebnisse für alle
+                        Teilnehmer.</p>
                 </div>
 
-                <div id="thank-you-message">
-                    <div class="success-icon">✓</div>
-                    <h2>Vielen Dank!</h2>
-                    <p>Deine Antworten wurden erfolgreich gespeichert. Vielen Dank für deinen wertvollen Beitrag zu
-                        meiner
-                        Masterarbeit.</p>
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f3f4f6; border-radius: 1rem;">
-                        <p style="font-weight: 600; font-size: 0.875rem;">Du kannst diesen Browser-Tab jetzt schließen.
-                        </p>
-                    </div>
+                <p
+                    style="margin-bottom: 2rem; font-weight: 700; color: #111827; font-size: 1.1rem; text-align: center;">
+                    Möchten Sie Ihre Daten unter Berücksichtigung dieser Informationen für die Studie
+                    freigeben?
+                </p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem;">
+                <button id="debriefing-confirm-btn" type="button"
+                    style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; border-radius: 1rem; font-weight: 800; font-size: 1.2rem; border: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3); text-transform: uppercase; letter-spacing: 0.025em;">
+                    Einverstanden (Daten verwenden)
+                </button>
+
+                <div style="text-align: center;">
+                    <button id="debriefing-withdraw-btn" type="button"
+                        style="background: transparent; color: #ef4444; font-weight: 600; font-size: 0.95rem; border: 2px solid transparent; text-decoration: underline; cursor: pointer; transition: all 0.2s; padding: 0.5rem;">
+                        Einwilligung widerrufen (Daten löschen)
+                    </button>
                 </div>
+            </div>
+        </div><!-- END #debriefing-section -->
+
+        <!-- Thank-You: shown after debriefing confirm -->
+        <div id="thank-you-message">
+            <div class="success-icon">✓</div>
+            <h2>Vielen Dank!</h2>
+            <p>Ihre Antworten wurden erfolgreich gespeichert. Vielen Dank für Ihren wertvollen Beitrag zu
+                meiner Masterarbeit.</p>
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #f3f4f6; border-radius: 1rem;">
+                <p style="font-weight: 600; font-size: 0.875rem;">Sie können diesen Browser-Tab jetzt schließen.
+                </p>
+            </div>
+        </div><!-- END #thank-you-message -->
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.js"></script>
@@ -491,9 +582,29 @@
             const formWrapper = document.getElementById('questionnaire-form-wrapper');
             const thankYouMessage = document.getElementById('thank-you-message');
 
-
-
-            form.addEventListener('submit', async (e) => {
+            // Deutsche Validierungs-Hinweise
+            const requiredElements = form.querySelectorAll('[required]');
+            requiredElements.forEach(el => {
+                el.addEventListener('invalid', function(e) {
+                    if (this.validity.valueMissing) {
+                        if (this.tagName.toLowerCase() === 'select') {
+                            this.setCustomValidity('Bitte wählen Sie einen Eintrag aus der Liste.');
+                        } else if (this.type === 'radio') {
+                            this.setCustomValidity('Bitte wählen Sie eine der Optionen aus.');
+                        } else {
+                            this.setCustomValidity('Bitte füllen Sie dieses Feld aus.');
+                        }
+                    }
+                });
+                
+                // Fehler zurücksetzen, sobald der Nutzer etwas eingibt/auswählt
+                el.addEventListener('input', function() {
+                    this.setCustomValidity('');
+                });
+                el.addEventListener('change', function() {
+                    this.setCustomValidity('');
+                });
+            });            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Wird übermittelt...';
@@ -508,15 +619,17 @@
                     user_id: sessionUserId,
                     age: parseInt(rawData.age),
                     gender: rawData.gender,
+                    education_level: rawData.education_level,
                     ai_frequency: parseInt(rawData.ai_frequency),
-                    source_verification_freq: parseInt(rawData.source_verification_freq),
                     mental_demand: parseInt(rawData.mental_demand),
-                    workflow_disruption: parseInt(rawData.workflow_disruption),
-                    fatigue: parseInt(rawData.fatigue),
+                    attention_check: parseInt(rawData.attention_check),
+                    sources_used: parseInt(rawData.sources_used),
+                    source_access_difficulty: rawData.source_access_difficulty ? parseInt(rawData.source_access_difficulty) : null,
                     trust: parseInt(rawData.trust),
-                    confidence_override: parseInt(rawData.confidence_override),
+                    no_verification_reason: rawData.no_verification_reason || "",
+                    hallucination_noticed: parseInt(rawData.hallucination_noticed),
+                    hallucination_details: rawData.hallucination_details || "",
                     perceived_purpose: rawData.perceived_purpose || "",
-                    suspicion_check: rawData.suspicion_check || "",
                     comment: rawData.comment || ""
                 };
 
@@ -530,7 +643,7 @@
 
                     if (error) {
                         console.error("Supabase error:", error);
-                        alert("Beim Übermitteln deiner Antwort ist ein Fehler aufgetreten. Bitte versuche es erneut.");
+                        alert("Beim Übermitteln Ihrer Antwort ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
                         submitBtn.disabled = false;
                         submitBtn.textContent = 'Studie abschließen';
                         return;
@@ -559,7 +672,7 @@
                     });
 
                     withdrawBtn.addEventListener('click', async () => {
-                        if (confirm("Möchtest du deine Einwilligung wirklich widerrufen? Deine bisherigen Antworten werden dann nicht für die Auswertung dieser Studie herangezogen.")) {
+                        if (confirm("Möchten Sie Ihre Einwilligung wirklich widerrufen? Ihre bisherigen Antworten werden dann nicht für die Auswertung dieser Studie herangezogen.")) {
                             if (typeof trackEvent === 'function') {
                                 await trackEvent('debriefing_consent_withdrawn', 'withdraw-btn');
                             }

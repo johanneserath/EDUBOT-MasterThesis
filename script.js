@@ -15,8 +15,10 @@ const TASKS = {
                     "1": "\"Du kannst monatlich bis zu 40 Euro für das Fitnessstudio abrechnen.\"",
                     "2": "\"Du kannst monatlich bis zu 50 Euro für das Fitnessstudio abrechnen.\""
                 },
-                aiAnswer: "Zertifizierte Fitnessstudios und Yoga-Zentren erhielten im vergangenen Jahr eine Erhöhung des monatlichen Gesundheitszuschusses auf 40 Euro (zuvor waren es 30 Euro). Der Betrag kann unter dem Code #Fit26 im Rahmen der regulären monatlichen Spesenabrechnung zurückgeholt werden.",
-                highlightUrl: "doc2_hr-guideline.html#highlight-task-1"
+                aiAnswerCorrect: "Zertifizierte Fitnessstudios und Yoga-Zentren erhielten im vergangenen Jahr eine Erhöhung des monatlichen Gesundheitszuschusses auf 40 Euro (zuvor waren es 30 Euro). Der Betrag kann unter dem Code #Fit26 im Rahmen der regulären monatlichen Spesenabrechnung zurückgeholt werden.",
+                aiAnswerHallucinated: "Zertifizierte Fitnessstudios und Yoga-Zentren erhielten im vergangenen Jahr eine Erhöhung des monatlichen Gesundheitszuschusses auf 50 Euro (zuvor waren es 40 Euro). Der Betrag kann unter dem Code #Fit26 im Rahmen der regulären monatlichen Spesenabrechnung zurückgeholt werden.",
+                highlightUrl: "doc2_hr-guideline.html#highlight-task-1",
+                originalTaskNumber: 1
             },
             2: {
                 hint: "Aufgabe 2 prüfen:",
@@ -25,8 +27,10 @@ const TASKS = {
                     "1": "\"Bitte plane das Meeting im Fenster zwischen 09:00 und 15:00 Uhr.\"",
                     "2": "\"Bitte plane das Meeting im Fenster zwischen 10:00 und 15:00 Uhr.\""
                 },
-                aiAnswer: "Der IT-Support und der Kundenservice arbeiten mit eigenen Schichtplänen. In allen anderen Abteilungen ist eine verbindliche Kernarbeitszeit von 10:00 bis 15:00 Uhr festgelegt. Während dieses Zeitraums wird erwartet, dass das Team für Meetings und Kundenanrufe jederzeit erreichbar ist. In den Zeiten dazwischen gibt es Gleitzeit.",
-                highlightUrl: "doc2_hr-guideline.html#highlight-task-2"
+                aiAnswerCorrect: "Der IT-Support und der Kundenservice arbeiten mit eigenen Schichtplänen. In allen anderen Abteilungen ist eine verbindliche Kernarbeitszeit von 10:00 bis 15:00 Uhr festgelegt. Während dieses Zeitraums wird erwartet, dass das Team für Meetings und Kundenanrufe jederzeit erreichbar ist. In den Zeiten dazwischen gibt es Gleitzeit.",
+                aiAnswerHallucinated: "Der IT-Support und der Kundenservice arbeiten mit eigenen Schichtplänen. In allen anderen Abteilungen ist eine verbindliche Kernarbeitszeit von 09:00 bis 15:00 Uhr festgelegt. Während dieses Zeitraums wird erwartet, dass das Team für Meetings und Kundenanrufe jederzeit erreichbar ist. In den Zeiten dazwischen gibt es Gleitzeit.",
+                highlightUrl: "doc2_hr-guideline.html#highlight-task-2",
+                originalTaskNumber: 2
             }
         }
     },
@@ -43,8 +47,10 @@ const TASKS = {
                     "1": "\"Stell dir den Reminder auf 60 Tage ein.\"",
                     "2": "\"Stell dir den Reminder auf 90 Tage ein.\""
                 },
-                aiAnswer: "Um Accounts vor Brute-Force-Attacken zu schützen, müssen alle Passwörter im System unbedingt alle 60 Tage gewechselt werden. 5 Tage, 3 Tage und 24 Stunden vor Ablauf sendet das System automatisch eine E-Mail-Erinnerung. Das Verwenden der gleichen Passwörter für private Zwecke oder auf externen Plattformen ist absolut verboten und verstößt gegen die Compliance-Richtlinien.",
-                highlightUrl: "doc1_it-security.html#highlight-task-3"
+                aiAnswerCorrect: "Um Accounts vor Brute-Force-Attacken zu schützen, müssen alle Passwörter im System unbedingt alle 90 Tage gewechselt werden. 5 Tage, 3 Tage und 24 Stunden vor Ablauf sendet das System automatisch eine E-Mail-Erinnerung. Das Verwenden der gleichen Passwörter für private Zwecke oder auf externen Plattformen ist absolut verboten und verstößt gegen die Compliance-Richtlinien.",
+                aiAnswerHallucinated: "Um Accounts vor Brute-Force-Attacken zu schützen, müssen alle Passwörter im System unbedingt alle 60 Tage gewechselt werden. 5 Tage, 3 Tage und 24 Stunden vor Ablauf sendet das System automatisch eine E-Mail-Erinnerung. Das Verwenden der gleichen Passwörter für private Zwecke oder auf externen Plattformen ist absolut verboten und verstößt gegen die Compliance-Richtlinien.",
+                highlightUrl: "doc1_it-security.html#highlight-task-3",
+                originalTaskNumber: 3
             },
             2: {
                 hint: "Aufgabe 4 prüfen:",
@@ -53,8 +59,10 @@ const TASKS = {
                     "1": "\"Du musst den Verlust zwingend innerhalb von 2 Stunden melden.\"",
                     "2": "\"Du musst den Verlust zwingend innerhalb von 5 Stunden melden.\""
                 },
-                aiAnswer: "Bei Diebstahl, Liegenlassen oder physischem Verlust eines Firmen-Laptops, Tablets oder Diensthandys muss innerhalb von fünf Stunden nach Feststellung des Verlusts die IT-Hotline (+43 512 000-999) telefonisch benachrichtigt werden. Nur durch diese zügige Meldung kann eine umgehende Fernlöschung (Remote-Wipe) sämtlicher lokaler Daten eingeleitet und der Netzwerkzugang gesperrt werden. Eine E-Mail-Mitteilung ist bei Verlust von Hardware nicht ausreichend.",
-                highlightUrl: "doc1_it-security.html#highlight-task-4"
+                aiAnswerCorrect: "Bei Diebstahl, Liegenlassen oder physischem Verlust eines Firmen-Laptops, Tablets oder Diensthandys muss innerhalb von zwei Stunden nach Feststellung des Verlusts die IT-Hotline (+43 512 000-999) telefonisch benachrichtigt werden. Nur durch diese zügige Meldung kann eine umgehende Fernlöschung (Remote-Wipe) sämtlicher lokaler Daten eingeleitet und der Netzwerkzugang gesperrt werden. Eine E-Mail-Mitteilung ist bei Verlust von Hardware nicht ausreichend.",
+                aiAnswerHallucinated: "Bei Diebstahl, Liegenlassen oder physischem Verlust eines Firmen-Laptops, Tablets oder Diensthandys muss innerhalb von fünf Stunden nach Feststellung des Verlusts die IT-Hotline (+43 512 000-999) telefonisch benachrichtigt werden. Nur durch diese zügige Meldung kann eine umgehende Fernlöschung (Remote-Wipe) sämtlicher lokaler Daten eingeleitet und der Netzwerkzugang gesperrt werden. Eine E-Mail-Mitteilung ist bei Verlust von Hardware nicht ausreichend.",
+                highlightUrl: "doc1_it-security.html#highlight-task-4",
+                originalTaskNumber: 4
             }
         }
     },
@@ -71,8 +79,10 @@ const TASKS = {
                     "1": "\"Du darfst ein Hotel für maximal 120 Euro pro Nacht buchen.\"",
                     "2": "\"Du darfst ein Hotel für maximal 200 Euro pro Nacht buchen.\""
                 },
-                aiAnswer: "Die Firma X arbeitet global mit ausgewählten Hotelketten (Marriott, Motel One, NH Hotels) zusammen. Diese werden über das Travel-Portal automatisch priorisiert angezeigt. Bei geschäftlichen Hotelübernachtungen im Inland (Österreich, Deutschland und der Schweiz) gilt eine strikte Obergrenze von maximal 120 Euro pro Nacht inklusive Frühstück, WLAN und Steuern.",
-                highlightUrl: "doc3_travel-policy.html#highlight-task-5"
+                aiAnswerCorrect: "Die Firma X arbeitet global mit ausgewählten Hotelketten (Marriott, Motel One, NH Hotels) zusammen. Diese werden über das Travel-Portal automatisch priorisiert angezeigt. Bei geschäftlichen Hotelübernachtungen im Inland (Österreich, Deutschland und der Schweiz) gilt eine strikte Obergrenze von maximal 120 Euro pro Nacht inklusive Frühstück, WLAN und Steuern.",
+                aiAnswerHallucinated: "Die Firma X arbeitet global mit ausgewählten Hotelketten (Marriott, Motel One, NH Hotels) zusammen. Diese werden über das Travel-Portal automatisch priorisiert angezeigt. Bei geschäftlichen Hotelübernachtungen im Inland (Österreich, Deutschland und der Schweiz) gilt eine strikte Obergrenze von maximal 200 Euro pro Nacht inklusive Frühstück, WLAN und Steuern.",
+                highlightUrl: "doc3_travel-policy.html#highlight-task-5",
+                originalTaskNumber: 5
             },
             2: {
                 hint: "Aufgabe 6 prüfen:",
@@ -81,8 +91,10 @@ const TASKS = {
                     "1": "\"Taxifahrten sind laut Richtlinie ab 20:00 Uhr erstattungsfähig.\"",
                     "2": "\"Taxifahrten sind laut Richtlinie ab 22:00 Uhr erstattungsfähig.\""
                 },
-                aiAnswer: "Am Zielort sollen vor allem öffentliche Verkehrsmittel (U-Bahn, Bus) genutzt werden. Taxifahrten (oder Ride-Sharing-Dienste wie Uber/Bolt) zum Hotel, Flughafen oder Bahnhof werden von Firma X nur erstattet, wenn die Fahrt nachweislich nach 20:00 Uhr erfolgt oder wenn schweres Messematerial (über 15 kg) transportiert werden muss.",
-                highlightUrl: "doc3_travel-policy.html#highlight-task-6"
+                aiAnswerCorrect: "Am Zielort sollen vor allem öffentliche Verkehrsmittel (U-Bahn, Bus) genutzt werden. Taxifahrten (oder Ride-Sharing-Dienste wie Uber/Bolt) zum Hotel, Flughafen oder Bahnhof werden von Firma X nur erstattet, wenn die Fahrt nachweislich zwischen 22:00 Uhr und 06:00 Uhr stattfindet oder wenn schweres Messematerial (über 15 kg) transportiert werden muss.",
+                aiAnswerHallucinated: "Am Zielort sollen vor allem öffentliche Verkehrsmittel (U-Bahn, Bus) genutzt werden. Taxifahrten (oder Ride-Sharing-Dienste wie Uber/Bolt) zum Hotel, Flughafen oder Bahnhof werden von Firma X nur erstattet, wenn die Fahrt nachweislich nach 20:00 Uhr erfolgt oder wenn schweres Messematerial (über 15 kg) transportiert werden muss.",
+                highlightUrl: "doc3_travel-policy.html#highlight-task-6",
+                originalTaskNumber: 6
             }
         }
     }
@@ -109,6 +121,17 @@ let currentDocUrl = "";
 
 let sessionId = "";
 let appStep = parseInt(sessionStorage.getItem('app_step')) || 0;
+let taskSequence = parseInt(sessionStorage.getItem('task_sequence')) || 1;
+
+// Function to map current appStep (1, 2, 3) to actual Task ID based on sequence
+function getActualTaskId() {
+    if (appStep <= 0) return 0;
+    // Latin Square Assignment
+    if (taskSequence === 1) return [1, 2, 3][appStep - 1]; // HR -> IT -> Travel
+    if (taskSequence === 2) return [2, 3, 1][appStep - 1]; // IT -> Travel -> HR
+    if (taskSequence === 3) return [3, 1, 2][appStep - 1]; // Travel -> HR -> IT
+    return appStep;
+}
 
 const chatWindow = document.getElementById('chat-window');
 const userInput = document.getElementById('user-input');
@@ -139,11 +162,14 @@ if (!supabaseClient) {
  * UTILITY: TRACK EVENT
  */
 async function trackEvent(eventType, elementId = null) {
-    const computedTaskNumber = isQuestionnaire ? 0 : ((appStep - 1) * 2 + currentPhase);
+    const taskInfo = TASKS[getActualTaskId()]?.phases[currentPhase];
+    const computedTaskNumber = taskInfo ? taskInfo.originalTaskNumber : 0;
     const computedPhaseNumber = isQuestionnaire ? 0 : appStep;
 
     const event = {
         user_id: sessionId,
+        task_sequence: taskSequence,
+        actual_task_id: getActualTaskId(),
         task_number: computedTaskNumber,
         phase_number: computedPhaseNumber,
         interface_type: INTERFACE_TYPE,
@@ -173,11 +199,14 @@ async function trackEvent(eventType, elementId = null) {
 async function logChatPrompt(promptText) {
     if (!supabaseClient) return;
 
-    const computedTaskNumber = ((appStep - 1) * 2 + currentPhase);
+    const taskInfo = TASKS[getActualTaskId()]?.phases[currentPhase];
+    const computedTaskNumber = taskInfo ? taskInfo.originalTaskNumber : 0;
     const computedPhaseNumber = appStep;
 
     const data = {
         user_id: sessionId,
+        task_sequence: taskSequence,
+        actual_task_id: getActualTaskId(),
         prompt_text: promptText,
         interface_type: INTERFACE_TYPE,
         task_number: computedTaskNumber,
@@ -203,23 +232,27 @@ async function logTaskAnswer(selectedValue) {
     if (!supabaseClient) return;
 
     let isCorrect = false;
-    const s = appStep;
+    const activeTaskId = getActualTaskId();
     const p = currentPhase;
+    
     // Mapping of logic (Task -> Step & Phase):
-    // Task 1: (HR: Fitness) -> correct is 40 ('1')
-    if (s === 1 && p === 1 && selectedValue === '1') isCorrect = true;
-    // Task 2: (HR: Kernzeit) -> KI hallucinates 09:00, correct is 10:00 ('2')
-    if (s === 1 && p === 2 && selectedValue === '2') isCorrect = true;
-    // Task 3: (IT: Passwort) -> KI hallucinates 60, correct is 90 ('2')
-    if (s === 2 && p === 1 && selectedValue === '2') isCorrect = true;
-    // Task 4: (IT: Laptop) -> correct is 2h ('1')
-    if (s === 2 && p === 2 && selectedValue === '1') isCorrect = true;
-    // Task 5: (Travel: Hotel) -> correct is 120 ('1')
-    if (s === 3 && p === 1 && selectedValue === '1') isCorrect = true;
-    // Task 6: (Travel: Taxi) -> KI hallucinates 20, correct is 22 ('2')
-    if (s === 3 && p === 2 && selectedValue === '2') isCorrect = true;
+    // Task 1 (HR): Fitness -> correct is 40 ('1')
+    if (activeTaskId === 1 && p === 1 && selectedValue === '1') isCorrect = true;
+    // Task 1 (HR): Kernzeit -> correct is 10:00 ('2')
+    if (activeTaskId === 1 && p === 2 && selectedValue === '2') isCorrect = true;
+    
+    // Task 2 (IT): Passwort -> correct is 90 ('2')
+    if (activeTaskId === 2 && p === 1 && selectedValue === '2') isCorrect = true;
+    // Task 2 (IT): Laptop -> correct is 2h ('1')
+    if (activeTaskId === 2 && p === 2 && selectedValue === '1') isCorrect = true;
+    
+    // Task 3 (Travel): Hotel -> correct is 120 ('1')
+    if (activeTaskId === 3 && p === 1 && selectedValue === '1') isCorrect = true;
+    // Task 3 (Travel): Taxi -> correct is 22 ('2')
+    if (activeTaskId === 3 && p === 2 && selectedValue === '2') isCorrect = true;
 
-    const computedTaskNumber = ((appStep - 1) * 2 + currentPhase);
+    const taskInfo = TASKS[activeTaskId]?.phases[currentPhase];
+    const computedTaskNumber = taskInfo ? taskInfo.originalTaskNumber : 0;
     const computedPhaseNumber = appStep;
 
     const data = {
@@ -259,8 +292,9 @@ function init() {
     }
 
     // 2. PDF Frame Setup (Dynamic based on task document)
-    if (appStep > 0 && TASKS[appStep]) {
-        currentDocUrl = TASKS[appStep].docUrl;
+    const activeTaskId = getActualTaskId();
+    if (appStep > 0 && TASKS[activeTaskId]) {
+        currentDocUrl = TASKS[activeTaskId].docUrl;
     }
     if (hasPdfFrame && pdfFrame && currentDocUrl) {
         pdfFrame.src = currentDocUrl;
@@ -285,12 +319,14 @@ function renderTaskCard(phase) {
     const taskContainer = document.getElementById('task-description-container');
     if (!taskContainer) return;
 
-    const task = TASKS[appStep];
+    const activeTaskId = getActualTaskId();
+    const task = TASKS[activeTaskId];
     if (!task) return;
 
     const phaseData = task.phases[phase];
     if (!phaseData) return;
 
+    // Display Task 1 to 6 sequentially, regardless of Latin Square topic order
     const computedTaskNumber = ((appStep - 1) * 2 + phase);
 
     taskContainer.innerHTML = `
@@ -540,9 +576,27 @@ function handleSend() {
         if (indicator) indicator.remove();
 
         // Retrieve the specific predefined AI answer for this task and phase
-        const aiAnswer = (TASKS[appStep] && TASKS[appStep].phases[currentPhase])
-            ? TASKS[appStep].phases[currentPhase].aiAnswer
-            : "Ich kann momentan keine Antwort geben.";
+        const activeTaskId = getActualTaskId();
+        let aiAnswer = "Ich kann momentan keine Antwort geben.";
+        
+        if (TASKS[activeTaskId] && TASKS[activeTaskId].phases[currentPhase]) {
+            const phaseInfo = TASKS[activeTaskId].phases[currentPhase];
+            
+            // Hallucinations occur at:
+            // - Task 3 (appStep 2, Phase 1)
+            // - Task 5 (appStep 3, Phase 1)
+            // - Task 6 (appStep 3, Phase 2)
+            let shouldHallucinate = false;
+            if (appStep === 2 && currentPhase === 1) shouldHallucinate = true;
+            if (appStep === 3 && currentPhase === 1) shouldHallucinate = true;
+            if (appStep === 3 && currentPhase === 2) shouldHallucinate = true;
+
+            if (shouldHallucinate) {
+                aiAnswer = phaseInfo.aiAnswerHallucinated;
+            } else {
+                aiAnswer = phaseInfo.aiAnswerCorrect;
+            }
+        }
 
         // Post the AI answer word-by-word (streaming effect)
         streamMessage(aiAnswer, () => {
@@ -560,8 +614,17 @@ function handleSend() {
         // 5. Interface Specific: Update PDF iframe with highlighting for both Interface B & C if supported
         if ((isInterfaceC || isInterfaceB) && pdfFrame) {
             console.log("Applying text highlight via postMessage...");
-            const computedTaskNumber = ((appStep - 1) * 2 + currentPhase);
-            const targetId = `highlight-task-${computedTaskNumber}`;
+            const activeTaskId = getActualTaskId();
+            const phaseInfo = TASKS[activeTaskId]?.phases[currentPhase];
+            
+            // Extract the targetId from highlightUrl (e.g., doc3_travel-policy.html#highlight-task-5 -> highlight-task-5)
+            let targetId = "";
+            if (phaseInfo && phaseInfo.highlightUrl) {
+                const parts = phaseInfo.highlightUrl.split('#');
+                if (parts.length > 1) {
+                    targetId = parts[1];
+                }
+            }
 
             setTimeout(() => {
                 pdfFrame.contentWindow.postMessage({
