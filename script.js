@@ -142,13 +142,21 @@ const sessionDisplay = document.getElementById('session-display');
 const SUPABASE_URL = 'https://rwmftrnegxtdxgprrxgo.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3bWZ0cm5lZ3h0ZHhncHJyeGdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI0NTk3MDAsImV4cCI6MjA4ODAzNTcwMH0.gXwofWxiU4GWSm6WOqk8C_jiWjIOT_Ym7y40fgTXEww';
 
-// Initialize Supabase Client with explicit headers to prevent "missing apikey" errors
+// Initialize Supabase Client with a custom fetch to ensure apikey is passed in the URL,
+// bypassing any browser extensions or local file:// CORS policies that strip custom headers.
 const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
         global: {
-            headers: {
-                'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            fetch: (url, options) => {
+                const newUrl = new URL(url);
+                newUrl.searchParams.set('apikey', SUPABASE_ANON_KEY);
+
+                // Ensure headers exist
+                if (!options.headers) options.headers = {};
+                options.headers['apikey'] = SUPABASE_ANON_KEY;
+                options.headers['Authorization'] = `Bearer ${SUPABASE_ANON_KEY}`;
+
+                return fetch(newUrl.toString(), options);
             }
         }
     })
@@ -168,8 +176,6 @@ async function trackEvent(eventType, elementId = null) {
 
     const event = {
         user_id: sessionId,
-        task_sequence: taskSequence,
-        actual_task_id: getActualTaskId(),
         task_number: computedTaskNumber,
         phase_number: computedPhaseNumber,
         interface_type: INTERFACE_TYPE,
@@ -205,8 +211,6 @@ async function logChatPrompt(promptText) {
 
     const data = {
         user_id: sessionId,
-        task_sequence: taskSequence,
-        actual_task_id: getActualTaskId(),
         prompt_text: promptText,
         interface_type: INTERFACE_TYPE,
         task_number: computedTaskNumber,
@@ -220,7 +224,7 @@ async function logChatPrompt(promptText) {
         .insert([data]);
 
     if (error) {
-        console.error("Supabase Error (chatPrompts_log):", error);
+        console.error("Supabase Error (chatPrompts_log):", error.message, error.details);
     }
 }
 
@@ -234,18 +238,18 @@ async function logTaskAnswer(selectedValue) {
     let isCorrect = false;
     const activeTaskId = getActualTaskId();
     const p = currentPhase;
-    
+
     // Mapping of logic (Task -> Step & Phase):
     // Task 1 (HR): Fitness -> correct is 40 ('1')
     if (activeTaskId === 1 && p === 1 && selectedValue === '1') isCorrect = true;
     // Task 1 (HR): Kernzeit -> correct is 10:00 ('2')
     if (activeTaskId === 1 && p === 2 && selectedValue === '2') isCorrect = true;
-    
+
     // Task 2 (IT): Passwort -> correct is 90 ('2')
     if (activeTaskId === 2 && p === 1 && selectedValue === '2') isCorrect = true;
     // Task 2 (IT): Laptop -> correct is 2h ('1')
     if (activeTaskId === 2 && p === 2 && selectedValue === '1') isCorrect = true;
-    
+
     // Task 3 (Travel): Hotel -> correct is 120 ('1')
     if (activeTaskId === 3 && p === 1 && selectedValue === '1') isCorrect = true;
     // Task 3 (Travel): Taxi -> correct is 22 ('2')
@@ -578,10 +582,10 @@ function handleSend() {
         // Retrieve the specific predefined AI answer for this task and phase
         const activeTaskId = getActualTaskId();
         let aiAnswer = "Ich kann momentan keine Antwort geben.";
-        
+
         if (TASKS[activeTaskId] && TASKS[activeTaskId].phases[currentPhase]) {
             const phaseInfo = TASKS[activeTaskId].phases[currentPhase];
-            
+
             // Hallucinations occur at:
             // - Task 3 (appStep 2, Phase 1)
             // - Task 5 (appStep 3, Phase 1)
@@ -616,7 +620,7 @@ function handleSend() {
             console.log("Applying text highlight via postMessage...");
             const activeTaskId = getActualTaskId();
             const phaseInfo = TASKS[activeTaskId]?.phases[currentPhase];
-            
+
             // Extract the targetId from highlightUrl (e.g., doc3_travel-policy.html#highlight-task-5 -> highlight-task-5)
             let targetId = "";
             if (phaseInfo && phaseInfo.highlightUrl) {
