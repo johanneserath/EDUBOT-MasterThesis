@@ -369,12 +369,12 @@ function renderTaskCard(phase) {
             <p class="task-card-hint" style="font-weight:600; margin-bottom: 0.5rem; color: var(--primary-color);">${phaseData.hint}</p>
 
             <div class="option-group">
-                <label class="option-box disabled" style="font-size: 0.9rem;">
-                    <input type="radio" name="accuracy-${phase}" value="1" disabled>
+                <label class="option-box" style="font-size: 0.9rem;">
+                    <input type="radio" name="accuracy-${phase}" value="1">
                     <span class="option-label">${phaseData.options["1"]}</span>
                 </label>
-                <label class="option-box disabled" style="font-size: 0.9rem;">
-                    <input type="radio" name="accuracy-${phase}" value="2" disabled>
+                <label class="option-box" style="font-size: 0.9rem;">
+                    <input type="radio" name="accuracy-${phase}" value="2">
                     <span class="option-label">${phaseData.options["2"]}</span>
                 </label>
             </div>
@@ -418,7 +418,7 @@ function renderTaskCard(phase) {
  */
 function checkPhaseCompletion() {
     const cardNextBtn = document.getElementById('card-next-btn');
-    if (cardNextBtn && promptSentInPhase && optionSelectedInPhase) {
+    if (cardNextBtn && optionSelectedInPhase) {
         cardNextBtn.disabled = false;
     }
 }
@@ -621,14 +621,7 @@ function handleSend() {
             // Fire anchor event so analysis can compute pre/post-verification timing
             trackEvent('ai_answer_completed', 'chat-window');
 
-            // Enable option boxes after streaming completes
-            const taskContainer = document.getElementById('task-description-container');
-            if (taskContainer) {
-                const radios = taskContainer.querySelectorAll('input[type="radio"]');
-                radios.forEach(radio => radio.disabled = false);
-                const labels = taskContainer.querySelectorAll('.option-box');
-                labels.forEach(label => label.classList.remove('disabled'));
-            }
+            // Option boxes are already enabled; just re-check completion state
             checkPhaseCompletion();
         });
 
